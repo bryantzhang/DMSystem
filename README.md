@@ -1,4 +1,4 @@
-TMSystem
+DMSystem
 ========
 
-Thesis management system
+Document management system
