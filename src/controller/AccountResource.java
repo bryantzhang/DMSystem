@@ -18,6 +18,9 @@ public class AccountResource extends ServerResource implements
 
 	@Override
 	public Representation add(Form form) {
+		if (isInRole("Admin")) {
+			
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}

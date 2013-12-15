@@ -7,6 +7,8 @@ import org.restlet.Server;
 import org.restlet.data.Parameter;
 import org.restlet.data.Protocol;
 import org.restlet.routing.VirtualHost;
+import org.restlet.security.MemoryRealm;
+import org.restlet.security.User;
 import org.restlet.util.Series;
 
 public class DMSystemComponent extends Component {
@@ -35,7 +37,7 @@ public class DMSystemComponent extends Component {
 
 		// Add connectors
 		getClients().add(new Client(Protocol.CLAP));
-
+		
 		Server server = new Server(new Context(), Protocol.HTTPS, 8183);
 		Series<Parameter> parameters = server.getContext().getParameters();
 		parameters.add("keystorePath", "src/serverKey.jks");
@@ -44,15 +46,32 @@ public class DMSystemComponent extends Component {
 		parameters.add("keyPassword", "password");
 		// Tracing
 		parameters.set("tracing", "true");
-
 		getServers().add(server);
 
+		DMSystemApplication app = new DMSystemApplication();
+		
 		// Configure the default virtual host
 		VirtualHost host = getDefaultHost();
 
 		// Attach the application to the default virtual host
-		host.attachDefault(new DMSystemApplication());
+		host.attachDefault(app);
 
+		// Configure the security realm
+        MemoryRealm realm = new MemoryRealm();
+        User homer = new User("admin", "admin", "Admin", "Admin",
+                "adim@simpson.org");
+        realm.getUsers().add(homer);
+        realm.map(homer, app.getRole(DMSystemApplication.kAdminRole));
+
+        User marge = new User("user", "user", "User", "User",
+                "user@simpson.org");
+        realm.getUsers().add(marge);
+        realm.map(marge, app.getRole(DMSystemApplication.kUserRole));
+
+        // Set the realm's default enroler and verifier
+        app.getContext().setDefaultEnroler(realm.getEnroler());
+        app.getContext().setDefaultVerifier(realm.getVerifier());
+        
 		// Configure the log service
 		getLogService().setLoggerName("DMSystem.AccessLog");
 		getLogService().setLogPropertiesRef("clap:///log.properties");
