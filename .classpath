@@ -2,5 +2,20 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/org.restlet.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.ext.jetty.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.ext.net.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.ext.jackson.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jetty.server.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jetty.util.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jetty.ajp.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jetty.continuation.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jetty.http.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jetty.io.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.ext.ssl.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet.jar"/>
+	<classpathentry kind="lib" path="lib/org.apache.commons.collections.jar"/>
+	<classpathentry kind="lib" path="lib/org.freemarker.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.ext.freemarker.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
