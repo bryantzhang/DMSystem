@@ -8,13 +8,7 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.data.Cookie;
 import org.restlet.data.CookieSetting;
 import org.restlet.data.Form;
-import org.restlet.data.LocalReference;
-import org.restlet.data.MediaType;
 import org.restlet.data.Method;
-import org.restlet.data.Status;
-import org.restlet.ext.freemarker.TemplateRepresentation;
-import org.restlet.representation.Representation;
-import org.restlet.resource.ClientResource;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.Verifier;
 
@@ -83,16 +77,9 @@ public class CookieAuthenticator extends ChallengeAuthenticator {
 	}
 
 	@Override
-	public void challenge(Response response, boolean stale) {
-		// Load the FreeMarker template
-		Representation loginvtl = new ClientResource(
-				LocalReference.createClapReference(getClass().getPackage())
-						+ "/Login.vtl").get();
-
-		// Wraps the bean with a FreeMarker representation
-		response.setEntity(new TemplateRepresentation(loginvtl, response
-				.getRequest().getResourceRef(), MediaType.TEXT_HTML));
-		response.setStatus(Status.CLIENT_ERROR_UNAUTHORIZED);
+	public void challenge(Response response, boolean stale) {		
+		String redirectUrl = "/login";
+		response.redirectSeeOther(redirectUrl);
 	}
 
 }

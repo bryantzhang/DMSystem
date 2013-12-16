@@ -1,14 +1,21 @@
 package controller;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import model.Document;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.restlet.data.Form;
 import org.restlet.data.LocalReference;
 import org.restlet.data.MediaType;
 import org.restlet.data.Parameter;
+import org.restlet.data.Status;
+import org.restlet.ext.fileupload.RestletFileUpload;
 import org.restlet.ext.freemarker.TemplateRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
@@ -53,18 +60,49 @@ public class DocumentResource extends ServerResource implements
 	}
 
 	@Override
-	public Representation modify(Form form) {
-		for (Parameter entry : form) {
-			System.out.println(entry.getName() + "=" + entry.getValue());
-		}
+	public Representation modify(Representation form) {
+//		for (Parameter entry : form) {
+//			System.out.println(entry.getName() + "=" + entry.getValue());
+//		}
 		return new StringRepresentation("Modify document successfully");
 	}
 
 	@Override
-	public Representation add(Form form) {
-		for (Parameter entry : form) {
-			System.out.println(entry.getName() + "=" + entry.getValue());
+	public Representation add(Representation input) {
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(1000240);
+
+		RestletFileUpload upload = new RestletFileUpload(factory);
+		List<FileItem> items;
+		try {
+			items = upload.parseRepresentation(input);
+
+			File file = null;
+
+			for (final Iterator<FileItem> it = items.iterator(); it.hasNext();) {
+				FileItem fi = it.next();
+
+				if (fi.isFormField()) {
+					System.out
+							.println(fi.getFieldName() + "=" + fi.getString());
+				} else {
+					String fileName = fi.getName();
+					String tempDir = System.getProperty("java.io.tmpdir");
+					String filePath = tempDir + File.separator + fileName;
+					file = new File(filePath);
+					fi.getInputStream();
+					fi.write(file);
+				}
+			}
+		} catch (Exception e) {
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+			e.printStackTrace();
+			return new StringRepresentation(e.getMessage(),
+					MediaType.TEXT_PLAIN);
 		}
+
+//		 String redirectUrl = ...; // address of newly created resource
+//		 getResponse().redirectSeeOther(redirectUrl);
 		return new StringRepresentation("Add document successfully");
 	}
 

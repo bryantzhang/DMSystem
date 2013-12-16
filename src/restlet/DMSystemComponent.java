@@ -58,15 +58,13 @@ public class DMSystemComponent extends Component {
 
 		// Configure the security realm
         MemoryRealm realm = new MemoryRealm();
-        User homer = new User("admin", "admin", "Admin", "Admin",
-                "adim@simpson.org");
-        realm.getUsers().add(homer);
-        realm.map(homer, app.getRole(DMSystemApplication.kAdminRole));
+        User admin = new User("admin", "admin");
+        realm.getUsers().add(admin);
+        realm.map(admin, app.getRole(DMSystemApplication.kAdminRole));
 
-        User marge = new User("user", "user", "User", "User",
-                "user@simpson.org");
-        realm.getUsers().add(marge);
-        realm.map(marge, app.getRole(DMSystemApplication.kUserRole));
+        User normal = new User("user", "user");
+        realm.getUsers().add(normal);
+        realm.map(normal, app.getRole(DMSystemApplication.kNormalRole));
 
         // Set the realm's default enroler and verifier
         app.getContext().setDefaultEnroler(realm.getEnroler());

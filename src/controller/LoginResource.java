@@ -1,54 +1,50 @@
 package controller;
 
-import org.restlet.data.Form;
 import org.restlet.data.LocalReference;
 import org.restlet.data.MediaType;
-import org.restlet.data.Parameter;
 import org.restlet.ext.freemarker.TemplateRepresentation;
 import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.ClientResource;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import restlet.DMSystemApplication;
 import common.LoginResourceInterface;
 
 public class LoginResource extends ServerResource implements
 		LoginResourceInterface {
 
 	@Override
-	public Representation login() throws Exception {
-		Representation mailVtl = new ClientResource(
-				LocalReference.createClapReference(getClass().getPackage())
-						+ "/Login.vtl").get();
-		return new TemplateRepresentation(mailVtl, MediaType.TEXT_HTML);
-	}
-
-	@Override
-	public Representation authenticate(Form form) {
-		boolean success = false;
-		
-		Parameter usernameParameter = form.getFirst("username");
-		Parameter passwordParameter = form.getFirst("password");
-		
-		if (usernameParameter != null && passwordParameter != null) {
-			String username = usernameParameter.getValue();
-			String password = passwordParameter.getValue();
-			
-			if (username.equals("admin") && password.equals("admin")) {
-				success = true;
+	public void login() throws Exception {
+		if (getRequest().getClientInfo().isAuthenticated()) {
+			if (isInRole(DMSystemApplication.kAdminRole)) {
+				String redirectUrl = "/user/admin/index";
+				getResponse().redirectSeeOther(redirectUrl);
+			} else if (isInRole(DMSystemApplication.kNormalRole)) {
+				String redirectUrl = "/user/normal/index";
+				getResponse().redirectSeeOther(redirectUrl);
 			}
-		}
-
-		if (success) {
-			return new StringRepresentation("Login Success, welcome");
 		} else {
-			Representation mailVtl = new ClientResource(
+			Representation loginvtl = new ClientResource(
 					LocalReference.createClapReference(getClass().getPackage())
 							+ "/Login.vtl").get();
-			return new TemplateRepresentation(mailVtl,
-					MediaType.TEXT_HTML);
+			getResponse().setEntity(
+					new TemplateRepresentation(loginvtl, getRequest()
+							.getResourceRef(), MediaType.TEXT_HTML));
 		}
 	}
+
+    
+    @Post
+    public void redirect(Representation input) throws Exception {
+		if (isInRole(DMSystemApplication.kAdminRole)) {
+			String redirectUrl = "/user/admin/index";
+			getResponse().redirectSeeOther(redirectUrl);
+		} else if (isInRole(DMSystemApplication.kNormalRole)) {
+			String redirectUrl = "/user/normal/index";
+			getResponse().redirectSeeOther(redirectUrl);
+		}
+    }
 
 	@Override
 	public Representation logout(String username) {

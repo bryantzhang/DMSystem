@@ -2,27 +2,21 @@ package restlet;
 
 import org.restlet.Application;
 import org.restlet.Restlet;
-import org.restlet.data.ChallengeScheme;
 import org.restlet.routing.Router;
-import org.restlet.security.ChallengeAuthenticator;
-import org.restlet.security.MapVerifier;
+import org.restlet.routing.Template;
 import org.restlet.security.Role;
 import org.restlet.security.RoleAuthorizer;
 
 import controller.AccountResource;
 import controller.CookieAuthenticator;
-import controller.DMSystemSecreteVerifier;
 import controller.DocumentResource;
 import controller.DocumentsResource;
 import controller.LoginResource;
 
 
-/**
- * The reusable mail server application.
- */
 public class DMSystemApplication extends Application {
 	public static final String kAdminRole = "Admin";
-	public static final String kUserRole = "User";
+	public static final String kNormalRole = "Normal";
 
 	public DMSystemApplication() {
 		// Declare the supported roles
@@ -35,29 +29,41 @@ public class DMSystemApplication extends Application {
      */
     @Override
     public Restlet createInboundRoot() {
-        Router router = new Router(getContext());
-        router.attach("/login", LoginResource.class);
-        router.attach("/user", DocumentsResource.class);
-        router.attach("/logout/{username}", LoginResource.class);
-        router.attach("/document/add", DocumentResource.class);
-        router.attach("/document/retrieve/{documentId}", DocumentResource.class);
-        router.attach("/document/modify/{documentId}", DocumentResource.class);
-        router.attach("/document/delete/{documentId}", DocumentResource.class);
+        Router adminRouter = new Router(getContext());
+        adminRouter.attach("/index", AccountResource.class);
         
-//        RoleAuthorizer authorizer = new RoleAuthorizer();
-//        authorizer.getAuthorizedRoles().add(getRole(DMSystemApplication.kUserRole));
-//        authorizer.setNext(router);
-        
-//        RoleAuthorizer adminAuthorizer = new RoleAuthorizer();
-//        authorizer.getAuthorizedRoles().add(getRole(DMSystemApplication.kAdminRole));
+        RoleAuthorizer adminAuthorizer = new RoleAuthorizer();
+        adminAuthorizer.getAuthorizedRoles().add(getRole(DMSystemApplication.kAdminRole));
+        adminAuthorizer.setNext(adminRouter);
 
+        Router userRouter = new Router(getContext());
+        userRouter.attach("/index", DocumentsResource.class);
+        userRouter.attach("/addDoc", DocumentResource.class);
+        userRouter.attach("/getDoc/{documentId}", DocumentResource.class);
+        userRouter.attach("/modifyDoc/{documentId}", DocumentResource.class);
+        userRouter.attach("/deleteDoc/{documentId}", DocumentResource.class);
+        
+        RoleAuthorizer normalAuthorizer = new RoleAuthorizer();
+        normalAuthorizer.getAuthorizedRoles().add(getRole(DMSystemApplication.kNormalRole));
+        normalAuthorizer.setNext(userRouter);
+        
+        Router roleRouter = new Router(getContext());
+        roleRouter.attach("/logout/{username}", LoginResource.class);
+        roleRouter.attach("/index", LoginResource.class);
+        roleRouter.attach("/admin", adminAuthorizer).setMatchingMode(Template.MODE_STARTS_WITH);
+        roleRouter.attach("/normal", normalAuthorizer).setMatchingMode(Template.MODE_STARTS_WITH);
+        
         CookieAuthenticator authenticator = new CookieAuthenticator(
                 getContext(), "My Realm");
-//        authenticator.setNext(authorizer);
-//        authenticator.setVerifier(new DMSystemSecreteVerifier());
-        authenticator.setNext(router);
+        authenticator.setNext(roleRouter);
         
-        return authenticator;
+        Router defaultRouter = new Router(getContext());
+        defaultRouter.attach("/", LoginResource.class);
+        defaultRouter.attach("/login", LoginResource.class);
+        defaultRouter.attach("/doc", authenticator).setMatchingMode(Template.MODE_STARTS_WITH);
+        defaultRouter.attach("/user", authenticator).setMatchingMode(Template.MODE_STARTS_WITH);
+        
+        return defaultRouter;
     }
 
 }

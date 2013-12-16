@@ -12,10 +12,10 @@ public interface DocumentResourceInterface {
     public Representation retrive() throws Exception;
 
     @Post("?type=modify")
-    public Representation modify(Form form);
+    public Representation modify(Representation form);
     
     @Post("?type=add")
-    public Representation add(Form form);
+    public Representation add(Representation input);
 
     @Delete
     public Representation remove();
