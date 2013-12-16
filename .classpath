@@ -17,5 +17,8 @@
 	<classpathentry kind="lib" path="lib/org.apache.commons.collections.jar"/>
 	<classpathentry kind="lib" path="lib/org.freemarker.jar"/>
 	<classpathentry kind="lib" path="lib/org.restlet.ext.freemarker.jar"/>
+	<classpathentry kind="lib" path="lib/org.apache.commons.fileupload.jar"/>
+	<classpathentry kind="lib" path="lib/org.apache.commons.io.jar"/>
+	<classpathentry kind="lib" path="lib/org.restlet.ext.fileupload.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
