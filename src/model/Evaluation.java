@@ -8,12 +8,34 @@ import java.util.Map;
  * 
  */
 public class Evaluation {
+	private int id;
 	private String content;
 	private int point;
 	private boolean published;
 	private int type;
+	private int docId;
 	private String username;
 	private Map<String, String> otherEvaluationProperties;
+
+	public Evaluation(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getDocId() {
+		return docId;
+	}
+
+	public void setDocId(int docId) {
+		this.docId = docId;
+	}
 
 	public String getContent() {
 		return content;

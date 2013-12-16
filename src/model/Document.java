@@ -12,7 +12,7 @@ import javax.management.relation.RelationType;
  */
 public class Document {
 	private int id;
-	private DocType docType;
+	private int docTypeId;
 	private String title;
 	private String author;
 	private String year;
@@ -41,12 +41,12 @@ public class Document {
 		this.id = id;
 	}
 
-	public DocType getDocType() {
-		return docType;
+	public int getDocTypeId() {
+		return docTypeId;
 	}
 
-	public void setDocType(DocType docType) {
-		this.docType = docType;
+	public void setDocTypeId(int docTypeId) {
+		this.docTypeId = docTypeId;
 	}
 
 	public String getTitle() {
