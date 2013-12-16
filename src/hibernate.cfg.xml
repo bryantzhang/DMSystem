@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mydb</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.search.autoregister_listeners">false</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hbm2ddl.auto">create</property>
+
+		<mapping class="dao.Document" />
+		<mapping class="dao.DocumentExtraProperty" />
+		<mapping class="dao.DocumentWithExtraProperty" />
+		<mapping class="dao.DocumentType" />
+		<mapping class="dao.DocumentRelation" />
+		<mapping class="dao.Evaluation" />
+		<mapping class="dao.EvaluationExtraProperty" />
+		<mapping class="dao.EvaluationWithExtraProperty" />
+		<mapping class="dao.Operation" />
+		<mapping class="dao.User" />
+		<mapping class="dao.Attachment" />
+		<mapping class="dao.RelationType" />
+		<mapping class="dao.Tag" />
+
+	</session-factory>
+</hibernate-configuration>

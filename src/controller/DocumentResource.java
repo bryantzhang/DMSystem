@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import model.Document;
+import dao.Document;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -48,7 +48,7 @@ public class DocumentResource extends ServerResource implements
 	@Override
 	public Representation retrive() throws Exception {
 		Document document = new Document();
-		document.setDocumentId(this.documentId);
+//		document.setDocumentId(this.documentId);
 
 		Map<String, Object> dataModel = new HashMap<String, Object>();
 		dataModel.put("document", document);
