@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Document` (
   `pages` INT NULL,
   `abstract` VARCHAR(400) NULL,
   `keywords` VARCHAR(100) NULL,
+  `publisher` VARCHAR(100) NULL,
   `url` VARCHAR(45) NULL,
   `createTime` VARCHAR(45) NULL,
   `docTypeId` INT NOT NULL,
