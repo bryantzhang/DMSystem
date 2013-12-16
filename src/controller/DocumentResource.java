@@ -53,7 +53,7 @@ public class DocumentResource extends ServerResource implements
 		Map<String, Object> dataModel = new HashMap<String, Object>();
 		dataModel.put("document", document);
 		Representation mailVtl = new ClientResource(
-				LocalReference.createClapReference(getClass().getPackage())
+				LocalReference.createClapReference("/source/html")
 						+ "/Document.vtl").get();
 		return new TemplateRepresentation(mailVtl, dataModel,
 				MediaType.TEXT_HTML);

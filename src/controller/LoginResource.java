@@ -26,7 +26,7 @@ public class LoginResource extends ServerResource implements
 			}
 		} else {
 			Representation loginvtl = new ClientResource(
-					LocalReference.createClapReference(getClass().getPackage())
+					LocalReference.createClapReference("/source/html")
 							+ "/Login.vtl").get();
 			getResponse().setEntity(
 					new TemplateRepresentation(loginvtl, getRequest()
