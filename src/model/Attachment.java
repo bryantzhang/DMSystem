@@ -6,12 +6,35 @@ package model;
  * 
  */
 public class Attachment {
+	private int id;
 	private String name;
 	private String url;
+	private int docId;
 
-	public Attachment(String name, String url) {
+	public Attachment(int id) {
+		this.id = id;
+	}
+
+	public Attachment(String name, String url, int docId) {
 		this.name = name;
 		this.url = url;
+		this.docId = docId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getDocId() {
+		return docId;
+	}
+
+	public void setDocId(int docId) {
+		this.docId = docId;
 	}
 
 	public String getName() {

@@ -1,21 +1,12 @@
 package model;
 
-/**
- * 
- * @author bryant zhang
- * 
- */
-public class DocType {
+public class RelationType {
 	private int id;
+
 	private String name;
 
-	public DocType(int id) {
+	public RelationType(int id) {
 		this.id = id;
-	}
-
-	public DocType(int id, String name) {
-		this.id = id;
-		this.name = name;
 	}
 
 	public int getId() {

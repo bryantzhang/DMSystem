@@ -18,8 +18,8 @@ import model.Document;
  */
 public class DataBaseDao {
 	private String driver = "com.mysql.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/";
-	private String username = "";
+	private String url = "jdbc:mysql://localhost:3306/mydb";
+	private String username = "root";
 	private String password = "";
 
 	private Connection dbConnection;
@@ -162,7 +162,6 @@ public class DataBaseDao {
 	public void addDocument(Document doc) {
 		String sql = "insert into document(id,title,author,year,pages,abstract,keywords,url,createTime,docTypeId,userId) values(?,?,?,?,?,?,?,?,?,?,?)";
 		int userId = this.getIdByUsername(doc.getUsername());
-		int docTypeId = this.getIdByDocTypeName(doc.getDocType().toString());
 
 		try {
 			this.connectDB();
@@ -177,7 +176,7 @@ public class DataBaseDao {
 				st.setString(7, doc.getKeywords());
 				st.setString(8, doc.getUrl());
 				st.setString(9, doc.getCreateTime());
-				st.setInt(10, docTypeId);
+				st.setInt(10, doc.getDocTypeId());
 				st.setInt(11, userId);
 
 				st.executeUpdate();
