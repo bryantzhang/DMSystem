@@ -4,82 +4,113 @@
     <meta charset="utf-8">
     <title>文献管理系统</title>
     <!-- Le styles -->
-    <link href="../static/bootstrap/bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
-      #div_login{
-            width: 400px;
-            margin-left: auto;
-            margin-right: auto; 
-      }
-      #mylogin{
-            border-radius: 5px;
-            background-color: #D1D3D4;
-      }
-      #login_button{
-        width: 400px;
-        margin-left: auto;
-        margin_right: auto;
-      }
+     
       .login_header_container{
         border-bottom: 1px dashed #6FAF44;
         margin-bottom: 30px;
         padding-bottom: 20px;
         text-align: center;
       }
+      #mylogin{
+        background-color: #CCEEFF;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #button-div{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
     </style>
-    <link href="../static/bootstrap/bootstrap/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
   </head>
-    <body>
+    
+  <body>
       <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-inner">
-            </div>
-          </div>
+        <div class="navbar-inner"></div>
       </div>
 
-    <div class="container">
-      <div class="row" id="div_login">
+      <div class="container">
+        <div class="span2"></div>
+        <div class="span8">
+
         <div class="login_header_container">
-          <h2>欢迎来到文献管理系统</h2>
-          <h2>登录</h2>
+          <h2>欢迎来到文献管理系统</h2>  
         </div>
-        <div id="mylogin">
-          <form action="" autocomplete="on" class="login" id="log_in" method="get">
-            <div id="message" class="alert">
-              你需要输入用户名和密码。
-            </div>
-            <div id="user_name_fields">
-              <label for="user_name">请输入用户名</label>
-              
-              <span></span><img src="../image/user_name.png"/></span>
-              <input id="user_name" size="20" tabindex="1" type="text" placeholder="用户名"/>
+      
+        <div class="row" id="div_login">
 
-            </div>
-            <div id="user_password_fields">
-              <label for="user_password">密码</label>
+          <div class="span4">
+            <div id="mylogin">
+            <br/>
+            <h2>登录</h2>
+            <br/>
+            <form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+
+            <form action="" autocomplete="on" class="login" id="log_in" method="get">
+              <div id="user_fields">
+                <span class="glyphicon glyphicon-user"></span>
+                <input id="user_name" size="40" tabindex="1" type="text" placeholder="用户名"/>
+              </div>
               
-              <span><img src="../image/password.png"/></span>
-              <input id="user_password" size="20" tabindex="2" type="password" placeholder="密码"/>
-              
-            </div>
-            <div>
-              <input id="remember_password" type="checkbox"/>记住密码
-            </div>
-            <div>
-              <input id="login_button" class="btn btn-success btn-lg btn-block" name="commit" type="submit" value="登录"/>
-            </div>
-          </form>
-        </div><!-- ia-container -->
+              <div id="user_fields">
+                <span class="glyphicon glyphicon-lock"></span>
+                <input id="user_password" size="20" tabindex="2" type="password" placeholder="密码"/>
+                <br/>
+                <input id="remember_password" type="checkbox"/>&nbsp;记住密码
+              </div>
+              <br/>
         
+              <div id="button-div">
+                <input id="login_button" class="btn btn-success" name="commit" type="submit" value="登录"/>
+              </div>
+            </form>
+            <br/>
+            
+          </div><!-- ia-container -->
+
+        </div>
+
+        <div class="span4"><img src="../image/background.jpg"/></div>
+
       </div>
 
+      </div>
     </div>
-
-    <div class="row"><img src="../image/background.jpg"/></div>
-  </div>
   </body>
 </html>

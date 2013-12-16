@@ -4,57 +4,58 @@
     <meta charset="utf-8">
     <title>文献管理系统</title>
     <!-- Le styles -->
-    <link href="../static/bootstrap/bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
-      .right_div{
-        float: right;
-      }
     </style>
-    <link href="../static/bootstrap/bootstrap/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
   </head>
     <body>
-      <div class="navbar navbar-inverse navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </a>
-                <a class="brand" href="">文献管理系统</a>
-                <div> 
-                  <ul class="nav">
-                    <li class="active"><a href=""><strong>文献列表</strong></a></li>
-                    <li><a href=""><strong>文献信息</strong></a></li>
-                    <li><a href=""><strong>文献录入</strong></a></li>
-                    <li><a href=""><strong>工作记录统计</strong></a></li>
-                  </ul>
-                </div>
-                <div class="right_div">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li><a href=""><strong>用户id</strong></a></li>
-                    <li><a href=""><strong>注销</strong></a></li>
-                    <li><a href=""><strong>修改密码</strong></a></li>
-                  </ul>
-                </div>
-                </div>
-            </div>
-          </div>
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">文献管理系统</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">文献列表</a></li>
+            <li><a href="">文献信息</a></li>
+            <li><a href="">文献录入</a></li>
+            <li><a href="">工作记录统计</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href=""><span class="glyphicon glyphicon-user"></span>&nbsp;用户id</a>
+            </li>
+            <li>
+              <a href="">注销</a>
+            </li>
+            <li>
+              <a href="">修改密码</a>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
+    </div>
 
       <div class="container">
         <div class="row">
         <div class="span2">
         </div>
         <div class="span8">
-        <form class="well form-search">
+        <form class="well search">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="text" class="input-large search-query" placeholder="请输入文字...">
+          <input type="search" class="input-large search-query" placeholder="请输入文字...">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <button type="submit" class="btn btn-primary">搜索文章</button>
         </form>
@@ -65,5 +66,6 @@
       <a class="pull-right" href="#"><i class="icon-arrow-up"></i>返回顶部</a>
     </footer>
   </div>
+
   </body>
 </html>
