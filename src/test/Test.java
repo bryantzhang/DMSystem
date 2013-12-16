@@ -15,10 +15,11 @@ import dao.Operation;
 import dao.RelationType;
 import dao.Tag;
 import dao.User;
+import model.UserUtil;
 
 import org.hibernate.Session;
 
-import dao.HibernateUtil;
+import model.HibernateUtil;
  
 public class Test {
     public static void main( String[] args )
@@ -149,5 +150,9 @@ public class Test {
         session.save(evaluationWithExtraProperty);
 
         session.getTransaction().commit();
+        
+        UserUtil userHome = new UserUtil();
+        User dbUser = userHome.findById(user.getId());
+        System.out.println(dbUser.getName());
     }
 }
