@@ -2,6 +2,7 @@ package restlet;
 
 import org.restlet.Application;
 import org.restlet.Restlet;
+import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 import org.restlet.routing.Template;
 import org.restlet.security.Role;
@@ -83,6 +84,12 @@ public class DMSystemApplication extends Application {
 		authenticator.setNext(roleRouter);
 
 		Router defaultRouter = new Router(getContext());
+		
+		String rootUri = "file:///"
+	            + System.getProperty("user.home");
+	    Directory directory = new Directory(getContext(), rootUri + "/Developer/source");
+	    directory.setListingAllowed(true);
+	    defaultRouter.attach("/source", directory);
 		defaultRouter.attach("/", LoginResource.class);
 		defaultRouter.attach("/login", LoginResource.class);
 		defaultRouter.attach("/doc", authenticator).setMatchingMode(

@@ -40,6 +40,7 @@ public class DMSystemComponent extends Component {
 
 		// Add connectors
 		getClients().add(new Client(Protocol.CLAP));
+		getClients().add(new Client(Protocol.FILE));
 		
 		Server server = new Server(new Context(), Protocol.HTTPS, 8183);
 		Series<Parameter> parameters = server.getContext().getParameters();
