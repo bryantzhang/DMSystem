@@ -3,21 +3,48 @@
 <title>Example Login</title>
 </head>
 <body>
-<p>Document id: ${document.documentId}</p>
-<form action="/doc/normal/addDoc?type=add" method="POST" enctype="multipart/form-data">
+<div>
+<p>Document id: ${document.id}</p>
+<p>Document title: ${document.title}</p>
+<p>Document author: ${document.author}</p>
+<p>Document abstract: ${document.abstracts}</p>
+</div>
+<form action="/doc/normal/addDoc?type=add" method="POST">
 <table>
     <tbody>
         <tr>
-            <td>FileName: </td>
-            <td><input type="text" name="filename" size="80"></td>
+            <td>Title: </td>
+            <td><input type="text" name="title" size="80"></td>
         </tr>
         <tr>
-			<td>Attachment</td>
+            <td>Author: </td>
+            <td><input type="text" name="author" size="80"></td>
+        </tr>
+        <tr>
+            <td>Type: </td>
+            <td><input type="text" name="documentType" size="80"></td>
+        </tr>
+        <tr>
+            <td/>
+            <td><input type="submit" value="Upload"></td>
+        </tr>
+    </tbody>
+</table>
+</form>
+<form action="/doc/normal/addAttachment/${document.id}" method="POST" enctype="multipart/form-data">
+<table>
+    <tbody>
+        <tr>
+			<td>Attachment 1</td>
+			<td><input name="attachment" type="file"/></a>
+		<tr>
+        <tr>
+			<td>Attachment 2</td>
 			<td><input name="attachment" type="file"/></a>
 		<tr>
         <tr>
             <td/>
-            <td><input type="submit" value="Login"></td>
+            <td><input type="submit" value="Save"></td>
         </tr>
     </tbody>
 </table>

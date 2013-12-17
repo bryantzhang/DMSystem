@@ -11,6 +11,9 @@ import org.restlet.security.MemoryRealm;
 import org.restlet.security.User;
 import org.restlet.util.Series;
 
+import controller.DMSystemEnroler;
+import controller.DMSystemSecreteVerifier;
+
 public class DMSystemComponent extends Component {
 	/**
 	 * Launches the mail server component.
@@ -56,20 +59,12 @@ public class DMSystemComponent extends Component {
 		// Attach the application to the default virtual host
 		host.attachDefault(app);
 
-		// Configure the security realm
-        MemoryRealm realm = new MemoryRealm();
-        User admin = new User("admin", "admin");
-        realm.getUsers().add(admin);
-        realm.map(admin, app.getRole(DMSystemApplication.kAdminRole));
+        // Set default enroler and verifier
+        DMSystemSecreteVerifier verifier = new DMSystemSecreteVerifier();
+        DMSystemEnroler enroler = new DMSystemEnroler(app);
+        app.getContext().setDefaultEnroler(enroler);
+        app.getContext().setDefaultVerifier(verifier);
 
-        User normal = new User("user", "user");
-        realm.getUsers().add(normal);
-        realm.map(normal, app.getRole(DMSystemApplication.kNormalRole));
-
-        // Set the realm's default enroler and verifier
-        app.getContext().setDefaultEnroler(realm.getEnroler());
-        app.getContext().setDefaultVerifier(realm.getVerifier());
-        
 		// Configure the log service
 		getLogService().setLoggerName("DMSystem.AccessLog");
 		getLogService().setLogPropertiesRef("clap:///log.properties");

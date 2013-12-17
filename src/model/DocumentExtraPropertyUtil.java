@@ -11,22 +11,21 @@ import dao.DocumentExtraProperty;
  */
 public class DocumentExtraPropertyUtil {
 	
-	public void add(DocumentExtraProperty transientInstance) {
+	public void add(DocumentExtraProperty transientInstance) throws Exception {
 		HibernateUtil.persist(transientInstance);
 	}
 
-	public void remove(DocumentExtraProperty persistentInstance) {
+	public void remove(DocumentExtraProperty persistentInstance) throws Exception {
 		HibernateUtil.remove(persistentInstance);
 	}
 
-	public DocumentExtraProperty update(DocumentExtraProperty detachedInstance) {
-		if (detachedInstance == null) {
-			return null;
+	public void update(DocumentExtraProperty detachedInstance) throws Exception {
+		if (detachedInstance != null) {
+			HibernateUtil.update(detachedInstance);
 		}
-		return (DocumentExtraProperty) HibernateUtil.merge(detachedInstance);
 	}
 
-	public DocumentExtraProperty findById(int id) {
+	public DocumentExtraProperty findById(int id) throws Exception {
 		return (DocumentExtraProperty) HibernateUtil.findById(DocumentExtraProperty.class, id);
 	}
 }

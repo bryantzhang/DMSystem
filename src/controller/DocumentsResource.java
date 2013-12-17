@@ -1,7 +1,11 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import model.DocumentUtil;
 
 import org.restlet.data.Form;
 import org.restlet.data.LocalReference;
@@ -14,13 +18,23 @@ import org.restlet.resource.ClientResource;
 import org.restlet.resource.ServerResource;
 
 import common.DocumentsResourceInterface;
+import dao.Document;
 
 public class DocumentsResource extends ServerResource implements
 DocumentsResourceInterface {
-
+	
+	private DocumentUtil documentUtil = new DocumentUtil();
+		
 	@Override
 	public Representation list() throws Exception {
-		return new StringRepresentation("There are so many document listing here");
+		List<Document> documents = this.documentUtil.getAll();
+		Map<String, Object> dataModel = new HashMap<String, Object>();
+		dataModel.put("documents", documents);
+		Representation mailVtl = new ClientResource(
+				LocalReference.createClapReference("/source/html")
+						+ "/document_list.vtl").get();
+		return new TemplateRepresentation(mailVtl, dataModel,
+				MediaType.TEXT_HTML);
 	}
 
 	@Override

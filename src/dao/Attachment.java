@@ -64,7 +64,7 @@ public class Attachment implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "url", length = 45)
+	@Column(name = "url", length = 100)
 	public String getUrl() {
 		return this.url;
 	}

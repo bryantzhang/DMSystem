@@ -11,22 +11,21 @@ import dao.Tag;
  */
 public class TagUtil {
 	
-	public void add(Tag transientInstance) {
+	public void add(Tag transientInstance) throws Exception {
 		HibernateUtil.persist(transientInstance);
 	}
 
-	public void remove(Tag persistentInstance) {
+	public void remove(Tag persistentInstance) throws Exception {
 		HibernateUtil.remove(persistentInstance);
 	}
 
-	public Tag update(Tag detachedInstance) {
-		if (detachedInstance == null) {
-			return null;
+	public void update(Tag detachedInstance) throws Exception {
+		if (detachedInstance != null) {
+			HibernateUtil.update(detachedInstance);
 		}
-		return (Tag) HibernateUtil.merge(detachedInstance);
 	}
 
-	public Tag findById(int id) {
+	public Tag findById(int id) throws Exception {
 		return (Tag) HibernateUtil.findById(Tag.class, id);
 	}
 }
