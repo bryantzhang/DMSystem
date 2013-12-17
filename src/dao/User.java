@@ -15,21 +15,22 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "User", catalog = "mydb")
 public class User implements java.io.Serializable {
+	public static enum Authority {
+		Unauthorized, Normal, Admin
+	};
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8173965168787037049L;
-	
+
 	private int id;
 	private String username;
 	private String password;
 	private String name;
 	private Integer authority;
-	private Set<Document> documents = new HashSet<Document>(
-			0);
-	private Set<Evaluation> evalulations = new HashSet<Evaluation>(
-			0);
+	private Set<Document> documents = new HashSet<Document>(0);
+	private Set<Evaluation> evalulations = new HashSet<Evaluation>(0);
 
 	public User() {
 	}
@@ -102,7 +103,7 @@ public class User implements java.io.Serializable {
 	public void setDocuments(Set<Document> documents) {
 		this.documents = documents;
 	}
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<Evaluation> getEvalulations() {
 		return evalulations;

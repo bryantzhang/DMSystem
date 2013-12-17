@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import model.UserUtil;
 
 import org.apache.commons.logging.Log;
@@ -44,7 +46,7 @@ public class HibernateUtil {
 		getSessionFactory().close();
 	}
 
-	public static void persist(Object transientInstance) {
+	public static void persist(Object transientInstance) throws Exception {
 		log.debug("persisting instance");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    try {
@@ -62,8 +64,31 @@ public class HibernateUtil {
 	        }
 	    }
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public static void persist(List transientInstances) throws Exception {
+		log.debug("persisting list of instances");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+	    try {
+	        session.beginTransaction();
+	        
+	        for (Object transientInstance : transientInstances) {
+		        session.save(transientInstance);
+	        }
+	        session.getTransaction().commit();
+			log.debug("persist successful");
+	    } catch (HibernateException he) {
+	        session.getTransaction().rollback();
+			log.error("persist failed", he);
+			throw he;
+	    } finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	}
 
-	public static void remove(Object persistentInstance) {
+	public static void remove(Object persistentInstance) throws Exception {
 		log.debug("removing instance");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
@@ -74,26 +99,31 @@ public class HibernateUtil {
 		} catch (RuntimeException re) {
 			log.error("remove failed", re);
 			throw re;
-		}
+		} finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
 	}
 
-	public static Object merge(Object detachedInstance) {
+	public static void update(Object detachedInstance) throws Exception {
 		log.debug("merging instance");
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 	        session.beginTransaction();
-	        Object result = session.merge(detachedInstance);
+	        session.update(detachedInstance);
 	        session.getTransaction().commit();
 			log.debug("merge successful");
-			return result;
 		} catch (RuntimeException re) {
 			log.error("merge failed", re);
 			throw re;
+		} finally {
+			session.close();
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
-	public static Object findById(Class objectClass, int id) {
+	public static Object findById(Class objectClass, int id) throws Exception {
 		log.debug("getting instance with id: " + id);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
@@ -104,6 +134,29 @@ public class HibernateUtil {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
-		}
+		} finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static List getAll(Class objectClass) throws Exception {
+		log.debug("getting all instance");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+	        session.beginTransaction();
+			List instance = session.createCriteria(objectClass).list();
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		} finally {
+	        if (session != null) {
+	            session.close();
+	        }
+	    }
 	}
 }

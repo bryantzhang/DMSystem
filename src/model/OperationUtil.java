@@ -11,22 +11,21 @@ import dao.Operation;
  */
 public class OperationUtil {
 	
-	public void add(Operation transientInstance) {
+	public void add(Operation transientInstance) throws Exception {
 		HibernateUtil.persist(transientInstance);
 	}
 
-	public void remove(Operation persistentInstance) {
+	public void remove(Operation persistentInstance) throws Exception {
 		HibernateUtil.remove(persistentInstance);
 	}
 
-	public Operation update(Operation detachedInstance) {
-		if (detachedInstance == null) {
-			return null;
+	public void update(Operation detachedInstance) throws Exception {
+		if (detachedInstance != null) {
+			HibernateUtil.update(detachedInstance);
 		}
-		return (Operation) HibernateUtil.merge(detachedInstance);
 	}
 
-	public Operation findById(int id) {
+	public Operation findById(int id) throws Exception {
 		return (Operation) HibernateUtil.findById(Operation.class, id);
 	}
 }

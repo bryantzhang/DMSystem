@@ -11,22 +11,21 @@ import dao.RelationType;;
  */
 public class RelationTypeUtil {
 	
-	public void add(RelationType transientInstance) {
+	public void add(RelationType transientInstance) throws Exception {
 		HibernateUtil.persist(transientInstance);
 	}
 
-	public void remove(RelationType persistentInstance) {
+	public void remove(RelationType persistentInstance) throws Exception {
 		HibernateUtil.remove(persistentInstance);
 	}
 
-	public RelationType update(RelationType detachedInstance) {
-		if (detachedInstance == null) {
-			return null;
+	public void update(RelationType detachedInstance) throws Exception {
+		if (detachedInstance != null) {
+			HibernateUtil.update(detachedInstance);
 		}
-		return (RelationType) HibernateUtil.merge(detachedInstance);
 	}
 
-	public RelationType findById(int id) {
+	public RelationType findById(int id) throws Exception {
 		return (RelationType) HibernateUtil.findById(RelationType.class, id);
 	}
 }

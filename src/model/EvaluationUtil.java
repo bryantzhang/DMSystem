@@ -11,22 +11,21 @@ import dao.Evaluation;
  */
 public class EvaluationUtil {
 	
-	public void add(Evaluation transientInstance) {
+	public void add(Evaluation transientInstance) throws Exception {
 		HibernateUtil.persist(transientInstance);
 	}
 
-	public void remove(Evaluation persistentInstance) {
+	public void remove(Evaluation persistentInstance) throws Exception {
 		HibernateUtil.remove(persistentInstance);
 	}
 
-	public Evaluation update(Evaluation detachedInstance) {
-		if (detachedInstance == null) {
-			return null;
+	public void update(Evaluation detachedInstance) throws Exception {
+		if (detachedInstance != null) {
+			HibernateUtil.update(detachedInstance);
 		}
-		return (Evaluation) HibernateUtil.merge(detachedInstance);
 	}
 
-	public Evaluation findById(int id) {
+	public Evaluation findById(int id) throws Exception {
 		return (Evaluation) HibernateUtil.findById(Evaluation.class, id);
 	}
 }

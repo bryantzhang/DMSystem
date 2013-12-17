@@ -30,6 +30,17 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "Document", catalog = "mydb")
 public class Document implements java.io.Serializable {
 
+	// Using for getting value from form
+	public static final String kTitleProperty = "title";
+	public static final String kAuthorProperty = "author";
+	public static final String kYearProperty = "year";
+	public static final String kPagesProperty = "pages";
+	public static final String kAbstractsProperty = "abstracts";
+	public static final String kKeywordsProperty = "keywords";
+	public static final String kUrlProperty = "url";
+	public static final String kPublisherProperty = "publisher";
+	public static final String kDocumentTypeProperty = "documentType";
+
 	/**
 	 * 
 	 */
@@ -37,7 +48,7 @@ public class Document implements java.io.Serializable {
 	private int id;
 	private String title;
 	private String author;
-	private Date year;
+	private String year;
 	private Integer pages;
 	private String abstracts;
 	private String keywords;
@@ -47,12 +58,15 @@ public class Document implements java.io.Serializable {
 	private DocumentType documentType;
 	private User user;
 
-	private Set<DocumentWithExtraProperty> extraProperties = new HashSet<DocumentWithExtraProperty>(0);
+	private Set<DocumentWithExtraProperty> extraProperties = new HashSet<DocumentWithExtraProperty>(
+			0);
 	private Set<Attachment> attachments = new HashSet<Attachment>(0);
 	private Set<Tag> tags = new HashSet<Tag>(0);
-	private Set<DocumentRelation> refererRelations = new HashSet<DocumentRelation>(0);
-	private Set<DocumentRelation> refereeRelations = new HashSet<DocumentRelation>(0);
-	
+	private Set<DocumentRelation> refererRelations = new HashSet<DocumentRelation>(
+			0);
+	private Set<DocumentRelation> refereeRelations = new HashSet<DocumentRelation>(
+			0);
+
 	public Document() {
 	}
 
@@ -62,7 +76,7 @@ public class Document implements java.io.Serializable {
 		this.user = user;
 	}
 
-	public Document(int id, String title, String author, Date year,
+	public Document(int id, String title, String author, String year,
 			Integer pages, String abstracts, String keywords, String url,
 			String publisher, Date createTime, DocumentType documentType,
 			User user) {
@@ -91,7 +105,7 @@ public class Document implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "title", length = 45)
+	@Column(name = "title", length = 150)
 	public String getTitle() {
 		return this.title;
 	}
@@ -109,13 +123,12 @@ public class Document implements java.io.Serializable {
 		this.author = author;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "year", length = 19)
-	public Date getYear() {
+	@Column(name = "year", length = 4)
+	public String getYear() {
 		return this.year;
 	}
 
-	public void setYear(Date year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
@@ -137,7 +150,7 @@ public class Document implements java.io.Serializable {
 		this.abstracts = abstracts;
 	}
 
-	@Column(name = "keywords", length = 100)
+	@Column(name = "keywords", length = 150)
 	public String getKeywords() {
 		return this.keywords;
 	}
@@ -165,7 +178,7 @@ public class Document implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "createTime", length = 19)
+	@Column(name = "createTime")
 	public Date getCreateTime() {
 		return this.createTime;
 	}
@@ -199,7 +212,8 @@ public class Document implements java.io.Serializable {
 		return extraProperties;
 	}
 
-	public void setExtraProperties(Set<DocumentWithExtraProperty> extraProperties) {
+	public void setExtraProperties(
+			Set<DocumentWithExtraProperty> extraProperties) {
 		this.extraProperties = extraProperties;
 	}
 
@@ -211,7 +225,7 @@ public class Document implements java.io.Serializable {
 	public void setAttachments(Set<Attachment> attachments) {
 		this.attachments = attachments;
 	}
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
 	public Set<Tag> getTags() {
 		return tags;
@@ -221,7 +235,7 @@ public class Document implements java.io.Serializable {
 		this.tags = tags;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.referer", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.referer", cascade = CascadeType.ALL)
 	public Set<DocumentRelation> getRefererRelations() {
 		return refererRelations;
 	}
@@ -230,7 +244,7 @@ public class Document implements java.io.Serializable {
 		this.refererRelations = refererRelations;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.referee", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.referee", cascade = CascadeType.ALL)
 	public Set<DocumentRelation> getRefereeRelations() {
 		return refereeRelations;
 	}
