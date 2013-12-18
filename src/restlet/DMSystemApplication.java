@@ -63,8 +63,10 @@ public class DMSystemApplication extends Application {
 		userRouter.attach("/getDoc/{documentId}", DocumentResource.class);
 		userRouter.attach("/modifyDoc/{documentId}", DocumentResource.class);
 		userRouter.attach("/deleteDoc/{documentId}", DocumentResource.class);
-		userRouter.attach("/addAttachment/{documentId}", AttachmentResource.class);
-		userRouter.attach("/deleteAttachment/{attachmentId}", AttachmentResource.class);
+		userRouter.attach("/addAttachment/{documentId}",
+				AttachmentResource.class);
+		userRouter.attach("/deleteAttachment/{attachmentId}",
+				AttachmentResource.class);
 
 		RoleAuthorizer normalAuthorizer = new RoleAuthorizer();
 		normalAuthorizer.getAuthorizedRoles().add(
@@ -84,12 +86,12 @@ public class DMSystemApplication extends Application {
 		authenticator.setNext(roleRouter);
 
 		Router defaultRouter = new Router(getContext());
-		
-		String rootUri = "file:///"
-	            + System.getProperty("user.home");
-	    Directory directory = new Directory(getContext(), rootUri + "/Developer/source");
-	    directory.setListingAllowed(true);
-	    defaultRouter.attach("/source", directory);
+
+		String rootUri = "file:///" + System.getProperty("user.home")
+				+ "/Developer/DMSystemResource";
+		Directory directory = new Directory(getContext(), rootUri);
+		directory.setListingAllowed(true);
+		defaultRouter.attach("/source", directory);
 		defaultRouter.attach("/", LoginResource.class);
 		defaultRouter.attach("/login", LoginResource.class);
 		defaultRouter.attach("/doc", authenticator).setMatchingMode(

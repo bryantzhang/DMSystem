@@ -7,8 +7,6 @@ import org.restlet.Server;
 import org.restlet.data.Parameter;
 import org.restlet.data.Protocol;
 import org.restlet.routing.VirtualHost;
-import org.restlet.security.MemoryRealm;
-import org.restlet.security.User;
 import org.restlet.util.Series;
 
 import controller.DMSystemEnroler;
@@ -41,15 +39,15 @@ public class DMSystemComponent extends Component {
 		// Add connectors
 		getClients().add(new Client(Protocol.CLAP));
 		getClients().add(new Client(Protocol.FILE));
-		
+
 		Server server = new Server(new Context(), Protocol.HTTPS, 8183);
 		Series<Parameter> parameters = server.getContext().getParameters();
-		parameters.add("keystorePath", "src/serverKey.jks");
+		parameters.add("keystorePath", "src/certification/serverKey.jks");
 		parameters.add("keystorePassword", "password");
 		parameters.add("keystoreType", "JKS");
 		parameters.add("keyPassword", "password");
 		// Tracing
-		parameters.set("tracing", "true");
+		parameters.set("tracing", "false");
 		getServers().add(server);
 
 		DMSystemApplication app = new DMSystemApplication();
