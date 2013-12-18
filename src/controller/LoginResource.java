@@ -9,7 +9,6 @@ import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import restlet.Constants;
-import restlet.DMSystemApplication;
 import common.LoginResourceInterface;
 
 public class LoginResource extends ServerResource implements
@@ -49,10 +48,11 @@ public class LoginResource extends ServerResource implements
 
 	@Override
 	public Representation logout(String username) {
-		Representation mailVtl = new ClientResource(
-				LocalReference.createClapReference(getClass().getPackage())
-						+ "/Login.vtl").get();
-		return new TemplateRepresentation(mailVtl, MediaType.TEXT_HTML);
+        getResponse().getCookieSettings().removeFirst(Constants.kCredentialsKey);
+        Representation loginvtl = new ClientResource(
+                LocalReference.createClapReference("/source/template")
+                        + "/login.vtl").get();
+		return new TemplateRepresentation(loginvtl, MediaType.TEXT_HTML);
 	}
 
 }
