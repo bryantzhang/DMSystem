@@ -5,10 +5,9 @@ package model;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import dao.Document;
-import dao.DocumentType;
-import dao.User;
+import dao.*;
 import restlet.Constants;
 
 /**
@@ -25,15 +24,17 @@ public class DocumentUtil {
 		}
 		
 		Document document = new Document();
-
-		this._updateValues(document, values);
 		
 		// Link user with this document
 		document.setUser(user);
-		
+
+        // Set time
+        document.setCreateTime(new Date());
+
+        // Save document
 		HibernateUtil.persist(document);
 
-		return document;
+		return this.update(document.getId(), values);
 	}
 
 	public Document update(Integer docId, Map<String, String> values)
@@ -87,49 +88,58 @@ public class DocumentUtil {
 	}
 
 	private void _updateBasisValues(Document document,
-			Map<String, String> values) {
-		if (values.containsKey(Constants.kTitleField)) {
-			String title = (String) values.get(Constants.kTitleField);
-			document.setTitle(title);
-		}
+			Map<String, String> values) throws Exception {
+        Set<String> keys = values.keySet();
 
-		if (values.containsKey(Constants.kAuthorField)) {
-			String author = (String) values.get(Constants.kAuthorField);
-			document.setAuthor(author);
-		}
+        for (String key : keys) {
+            if (key.equals(Constants.kTitleField)) {
+                String title = (String) values.get(key);
+                document.setTitle(title);
+            } else if (key.equals(Constants.kAuthorField)) {
+                String author = (String) values.get(key);
+                document.setAuthor(author);
+            } else if (key.equals(Constants.kAbstractsField)) {
+                String abstracts = (String) values.get(key);
+                document.setAbstracts(abstracts);
+            } else if (key.equals(Constants.kKeywordsField)) {
+                String keywords = (String) values.get(key);
+                document.setKeywords(keywords);
+            } else if (key.equals(Constants.kUrlField)) {
+                String url = (String) values.get(key);
+                document.setUrl(url);
+            } else if (key.equals(Constants.kPublisherField)) {
+                String publisher = (String) values.get(key);
+                document.setPublisher(publisher);
+            } else if (key.equals(Constants.kPagesField)) {
+                Integer pages = Integer.parseInt((String) values
+                        .get(key));
+                document.setPages(pages);
+            } else if (key.equals(Constants.kYearField)) {
+                String year = (String) values.get(key);
+                document.setYear(year);
+            } else {
+                String[] components = key.split("-");
+                if (components.length == 2) {
+                    String extraPropertyName = components[0];
+                    Integer extraPropertyId = Integer.parseInt(components[1]);
 
-		if (values.containsKey(Constants.kAbstractsField)) {
-			String abstracts = (String) values.get(Constants.kAbstractsField);
-			document.setAbstracts(abstracts);
-		}
+                    DocumentExtraProperty extraProperty = DocumentExtraPropertyUtil.findById(extraPropertyId);
+                    DocumentWithExtraProperty documentWithExtraProperty = DocumentWithExtraPropertyUtil.find(document, extraProperty);
+                    if (documentWithExtraProperty == null) {
+                        documentWithExtraProperty = new DocumentWithExtraProperty();
 
-		if (values.containsKey(Constants.kKeywordsField)) {
-			String keywords = (String) values.get(Constants.kKeywordsField);
-			document.setKeywords(keywords);
-		}
-
-		if (values.containsKey(Constants.kUrlField)) {
-			String url = (String) values.get(Constants.kUrlField);
-			document.setUrl(url);
-		}
-
-		if (values.containsKey(Constants.kPublisherField)) {
-			String publisher = (String) values.get(Constants.kPublisherField);
-			document.setPublisher(publisher);
-		}
-
-		if (values.containsKey(Constants.kPagesField)) {
-			Integer pages = Integer.parseInt((String) values
-					.get(Constants.kPagesField));
-			document.setPages(pages);
-		}
-
-		if (values.containsKey(Constants.kYearField)) {
-			String year = (String) values.get(Constants.kYearField);
-			document.setYear(year);
-		}
-
-		document.setCreateTime(new Date());
+                        documentWithExtraProperty.setDocument(document);
+                        documentWithExtraProperty.setDocumentExtraProperty(extraProperty);
+                        documentWithExtraProperty.setPropertyValue(values.get(key));
+                        DocumentWithExtraPropertyUtil.add(documentWithExtraProperty);
+                    } else {
+                        documentWithExtraProperty.setPropertyValue(values.get(key));
+                        DocumentWithExtraPropertyUtil.update(documentWithExtraProperty);
+                    }
+                    document.getExtraProperties();
+                }
+            }
+        }
 	}
 	
 	private void _updateDocumentType(Document document, Integer docTypeId) throws Exception {

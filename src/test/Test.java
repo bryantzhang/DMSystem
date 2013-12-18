@@ -15,6 +15,7 @@ import dao.Operation;
 import dao.RelationType;
 import dao.Tag;
 import dao.User;
+import model.DocumentWithExtraPropertyUtil;
 import model.UserUtil;
 
 import org.hibernate.Session;
@@ -285,5 +286,8 @@ public class Test {
 		UserUtil userHome = new UserUtil();
 		User dbUser = userHome.findById(user.getId());
 		System.out.println(dbUser.getName());
+
+        DocumentWithExtraProperty dwp = DocumentWithExtraPropertyUtil.find(document,documentExtraProperty);
+        System.out.print(dwp.getDocument().getTitle());
 	}
 }
