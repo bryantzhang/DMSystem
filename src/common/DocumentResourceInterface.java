@@ -11,12 +11,6 @@ public interface DocumentResourceInterface {
     @Get
     public Representation retrieve();
 
-    @Post("?type=modify")
-    public Representation modify(Form form);
-    
-    @Post("?type=add")
-    public Representation add(Form form);
-
     @Delete
     public Representation remove();
 }
