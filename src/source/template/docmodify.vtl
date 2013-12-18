@@ -213,35 +213,35 @@
               <div class="form-group discription">
                 <label for="author" class="col-sm-2 control-label">作者 *</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="author" value=${document.author}></input>
+                    <input type="text" class="form-control" name="author" value=${document.author}></input>
                 </div>
               </div>
                   
               <div class="form-group discription">
-                <label for="publishyear" class="col-sm-2 control-label">出版年份 *</label>
+                <label for="year" class="col-sm-2 control-label">出版年份 *</label>
                 <div class="col-sm-9">
-                   <input type="text" class="form-control" id="publishyear" placeholder=${document.year}>
+                   <input type="text" class="form-control" name="year" placeholder=${document.year}>
                 </div>
               </div>
               
               <div class="form-group discription">
-                <label for="page" class="col-sm-2 control-label">页码 *</label>
+                <label for="pages" class="col-sm-2 control-label">页码 *</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="page" placeholder=${document.pages}>
+                  <input type="text" class="form-control" name="pages" placeholder=${document.pages}>
                 </div>
               </div>
               
               <div class="form-group discription">
-                <label for="abstract" class="col-sm-2 control-label">摘要 *</label>
+                <label for="abstracts" class="col-sm-2 control-label">摘要 *</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" id="abstract" rows="5">${document.abstracts}</textarea>
+                    <textarea class="form-control" name="abstracts" rows="5">${document.abstracts}</textarea>
                 </div>
               </div>
               
               <div class="form-group discription">
                 <label for="keyword" class="col-sm-2 control-label">关键字 *</label>
                 <div class="col-sm-9">
-                   <textarea class="form-control" id="keywords" rows="3">${document.keywords}
+                   <textarea class="form-control" name="keywords" rows="3">${document.keywords}
                    </textarea>
                 </div>
               </div>
@@ -249,21 +249,21 @@
               <div class="form-group discription">
                  <label for="publisher" class="col-sm-2 control-label">出版社 *</label>
                  <div class="col-sm-9">
-                   <input type="text" class="form-control" id="publisher" placeholder=${document.publisher}>
+                   <input type="text" class="form-control" name="publisher" placeholder=${document.publisher}>
                  </div>
               </div>
        
               <div class="form-group discription">
                 <label for="url" class="col-sm-2 control-label">在线的网址 *</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="url" value=${document.url}>
+                    <input type="text" class="form-control" name="url" value=${document.url}>
                 </div>
               </div>
             
               <div class="form-group discription">
                 <label for="type" class="col-sm-2 control-label">文献类型 *</label>
                 <div class="col-sm-9">
-                  <select class="form-control" onchange="select(this.options[this.options.selectedIndex].value)">
+                  <select class="form-control" name="documentType" onchange="select(this.options[this.options.selectedIndex].value)">
                     <option>请选择文献类型...</option>
                     <option>图书</option>
                     <option>图书章节</option>
@@ -308,7 +308,7 @@
                 <div class="form-group">
                   <div class="col-xs-2"></div>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" id="tag" placeholder="标签名称...">
+                      <input type="text" class="form-control" name="tag" placeholder="标签名称...">
                     </div>
                 </div>
               </div>

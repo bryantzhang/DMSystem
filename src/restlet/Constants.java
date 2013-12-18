@@ -18,6 +18,7 @@ public class Constants {
     // Using for user info form
     public static final String kNewPasswordField = "newPassword";
     public static final String kOldPasswordField = "oldPassword";
+    public static final String kNewPasswordConfirmField = "newPasswordConfirm";
 
 
     // Using for document form
@@ -30,5 +31,25 @@ public class Constants {
     public static final String kUrlField = "url";
     public static final String kPublisherField = "publisher";
     public static final String kDocumentTypeField = "documentType";
-
+    
+    //Using for creating a tag
+    public static final String kTagField = "tag";
+    
+    //Using for brief comment form
+    public static final String kBriefCommentField = "briefComment";
+    
+    //Using for detailed comment form
+    public static final String kProblemField = "problem";
+    public static final String kIdeaField = "idea";
+    public static final String kExperimentField = "experiment";
+    public static final String kContributionField = "contribution";
+    public static final String kImprovementField = "improvement";
+    
+    //Using for uploading attachment form
+    public static final String kDocumentField = "document";
+    public static final String kPptField = "ppt";
+    public static final String kPosterField = "poster";
+    public static final String kPresentationField = "presentation";
+    public static final String kOtherField = "other";
+    public static final String kCodeField = "code";
 }
