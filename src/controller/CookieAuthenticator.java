@@ -41,7 +41,7 @@ public class CookieAuthenticator extends ChallengeAuthenticator {
 			cookieSetting.setAccessRestricted(true);
 			cookieSetting.setPath("/");
 			cookieSetting.setComment("Unsecured cookie based authentication");
-			cookieSetting.setMaxAge(30);
+			cookieSetting.setMaxAge(300);
 			response.getCookieSettings().add(cookieSetting);
 		}
 	}
