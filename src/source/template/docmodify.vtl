@@ -182,7 +182,7 @@
           <div class="col-xs-10" style="background-color:#CCEEFF;">
             <h2 style="background-color:#58D3F7;text-align:center;"><hr/>
             编辑文献资料<hr/></h2>
-            <h3><span class="label label-info">标题：Role based access control</span></h3>
+            <h3><span class="label label-info">标题：${document.title}</span></h3>
 
             <form class="form-horizontal well" role="form">
 
@@ -213,35 +213,35 @@
               <div class="form-group discription">
                 <label for="author" class="col-sm-2 control-label">作者 *</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="author" value="Sandhu, R.S. ; George Mason Univ., Fairfax, VA, USA ; Coyne, E.J. ; Feinstein, H.L. ; Youman, C.E."></input>
+                    <input type="text" class="form-control" id="author" value=${document.author}></input>
                 </div>
               </div>
                   
               <div class="form-group discription">
                 <label for="publishyear" class="col-sm-2 control-label">出版年份 *</label>
                 <div class="col-sm-9">
-                   <input type="text" class="form-control" id="publishyear" placeholder="出版年份...">
+                   <input type="text" class="form-control" id="publishyear" placeholder=${document.year}>
                 </div>
               </div>
               
               <div class="form-group discription">
                 <label for="page" class="col-sm-2 control-label">页码 *</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="page" placeholder="页码...">
+                  <input type="text" class="form-control" id="page" placeholder=${document.pages}>
                 </div>
               </div>
               
               <div class="form-group discription">
                 <label for="abstract" class="col-sm-2 control-label">摘要 *</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" id="abstract" rows="5">The basic concept of role-based access control (RBAC) is that permissions are associated with roles, and users are made members of appropriate roles, thereby acquiring the roles' permissions. This idea has been around since the advent of multi-user computing. Until recently, however, RBAC has received little attention from the research community. This chapter describes the motivations, results, and open issues in recent MAC research.</textarea>
+                    <textarea class="form-control" id="abstract" rows="5">${document.abstracts}</textarea>
                 </div>
               </div>
               
               <div class="form-group discription">
                 <label for="keyword" class="col-sm-2 control-label">关键字 *</label>
                 <div class="col-sm-9">
-                   <textarea class="form-control" id="keywords" rows="3">Access control, Authorization, Data security, Government, NIST, Permission, Privacy, Resource management, Software systems Telephony
+                   <textarea class="form-control" id="keywords" rows="3">${document.keywords}
                    </textarea>
                 </div>
               </div>
@@ -249,14 +249,14 @@
               <div class="form-group discription">
                  <label for="publisher" class="col-sm-2 control-label">出版社 *</label>
                  <div class="col-sm-9">
-                   <input type="text" class="form-control" id="publisher" placeholder="出版社...">
+                   <input type="text" class="form-control" id="publisher" placeholder=${document.publisher}>
                  </div>
               </div>
        
               <div class="form-group discription">
                 <label for="url" class="col-sm-2 control-label">在线的网址 *</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="url" value="http://ieeexplore.ieee.org/xpl/abstractKeywords.jsp?arnumber=485845&reason=concurrency">
+                    <input type="text" class="form-control" id="url" value=${document.url}>
                 </div>
               </div>
             
