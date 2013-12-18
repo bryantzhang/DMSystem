@@ -27,14 +27,14 @@
     </style>
     <script type="text/javascript">
         function select(s){
-            if(s=="图书"){
+            if(s==1){
                 addition=newAddition();
                 divEditor=editDiv("editor","编辑");
                 divISBN=editDiv("isbn","ISBN");
                 addition.appendChild(divEditor);
                 addition.appendChild(divISBN);
             }
-            if(s=="图书章节"){
+            if(s==2){
                 addition=newAddition();
                 divBookName=editDiv("bookname","图书名");
                 divEditor=editDiv("editor","编辑");
@@ -45,7 +45,7 @@
                 addition.appendChild(divISBN);
 
             }
-            if(s=="期刊"){
+            if(s==3){
                 addition=newAddition();
                 divPublication=editDiv("publication","出处");
                 divVolume=editDiv("volume","卷");
@@ -56,7 +56,7 @@
                 addition.appendChild(divIssue);
                 addition.appendChild(divDOI);
             }
-            if(s=="会议"){
+            if(s==4){
                 addition=newAddition();
                 divPublication=editDiv("publication","出处");
                 divCity=editDiv("city","城市");
@@ -65,15 +65,15 @@
                 addition.appendChild(divCity);
                 addition.appendChild(divDOI);
             }
-            if(s=="学位论文"){
+            if(s==5){
                 addition=newAddition();
                 divschool=editDiv("school","学校");
                 addition.appendChild(divschool);
             }
-            if(s=="技术报告"){
+            if(s==6){
                 addition=newAddition();
             }
-            if(s=="在线资源"){
+            if(s==7){
                 addition=newAddition();
             }
 
@@ -84,7 +84,7 @@
                 div=createDiv();
                 label.setAttribute("for",english);
                 label.innerText=chinese+" *";
-                input.setAttribute("id",english);
+                input.setAttribute("name",english);
                 input.setAttribute("placeholder",chinese);
                 div1.appendChild(input);
                 div.appendChild(label);
@@ -184,7 +184,7 @@
             编辑文献资料<hr/></h2>
             <h3><span class="label label-info">标题：${document.title}</span></h3>
 
-            <form class="form-horizontal well" role="form">
+            <form class="form-horizontal well" role="form" method="POST">
 
               <div class="form-group discription">
                 <label for="author" class="col-sm-2 control-label">标签 *</label>
@@ -220,14 +220,14 @@
               <div class="form-group discription">
                 <label for="year" class="col-sm-2 control-label">出版年份 *</label>
                 <div class="col-sm-9">
-                   <input type="text" class="form-control" name="year" placeholder=${document.year}>
+                   <input type="text" class="form-control" name="year" value=${document.year}>
                 </div>
               </div>
               
               <div class="form-group discription">
                 <label for="pages" class="col-sm-2 control-label">页码 *</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="pages" placeholder=${document.pages}>
+                  <input type="text" class="form-control" name="pages" value=${document.pages}>
                 </div>
               </div>
               
@@ -249,7 +249,7 @@
               <div class="form-group discription">
                  <label for="publisher" class="col-sm-2 control-label">出版社 *</label>
                  <div class="col-sm-9">
-                   <input type="text" class="form-control" name="publisher" placeholder=${document.publisher}>
+                   <input type="text" class="form-control" name="publisher" value=${document.publisher}>
                  </div>
               </div>
        
@@ -265,13 +265,13 @@
                 <div class="col-sm-9">
                   <select class="form-control" name="documentType" onchange="select(this.options[this.options.selectedIndex].value)">
                     <option>请选择文献类型...</option>
-                    <option>图书</option>
-                    <option>图书章节</option>
-                    <option>期刊</option>
-                    <option>会议</option>
-                    <option>学位论文</option>
-                    <option>技术报告</option>
-                    <option>在线资源</option>
+                    <option value="1">图书</option>
+                    <option value="2">图书章节</option>
+                    <option value="3">期刊</option>
+                    <option value="4">会议</option>
+                    <option value="5">学位论文</option>
+                    <option value="6">技术报告</option>
+                    <option value="7">在线资源</option>
                   </select>
                 </div>
               </div>
