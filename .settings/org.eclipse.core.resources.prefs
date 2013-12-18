@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/controller/AccountResource.java=UTF-8
 encoding//src/restlet/DMSystemApplication.java=UTF-8
+encoding//src/restlet/DMSystemComponent.java=UTF-8
 encoding//src/source/html/document_list.vtl=UTF-8
+encoding/<project>=UTF-8
