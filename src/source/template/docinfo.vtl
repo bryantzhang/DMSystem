@@ -33,13 +33,13 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#"><span class="glyphicon glyphicon-list"></span>&nbsp;文献列表</a></li>
-            <li><a href=""><span class="glyphicon glyphicon-import"></span>&nbsp;文献录入</a></li>
+            <li><a href="/user/normal/index"><span class="glyphicon glyphicon-list"></span>&nbsp;文献列表</a></li>
+            <li><a href="/doc/normal/addDoc"><span class="glyphicon glyphicon-import"></span>&nbsp;文献录入</a></li>
             <li><a href=""><span class="glyphicon glyphicon-stats"></span>&nbsp;工作记录统计</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href=""><span class="glyphicon glyphicon-user"></span>&nbsp;${user.name}</a>
+              <a><span class="glyphicon glyphicon-user"></span>&nbsp;${user.name}</a>
             </li>
             <li>
               <a href=""><span class="glyphicon glyphicon-log-out"></span>&nbsp;注销</a>
@@ -87,9 +87,9 @@
               <span class="label label-info">标题：</span><br/><br/>
               <i>${document.title}</i></div>
               <div class="col-xs-5 pull-right">
-              <button class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>&nbsp;
+              <a href="/doc/normal/modifyDoc/${document.id}" class="btn btn-primary active"><span class="glyphicon glyphicon-edit"></span>&nbsp;
               编辑
-              </button>
+              </a>
               &nbsp;&nbsp;
               <button class="btn btn-primary"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;
               论文下载
@@ -152,21 +152,26 @@
                 <div class="panel-heading" style="background:#0174DF;">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseComment">
-                      评论&nbsp;&nbsp;<span class="badge">3</span>
+                      评论&nbsp;&nbsp;<span class="badge">${documents.evaluations.size}</span>
                     </a>
                   </h4>
                 </div>
               
                 <div id="collapseComment" class="panel-collapse collapse out">
                   <div class="panel-body">
+
+                  <#list document.evaluations as evaluation>
                     
-                    
+                    <#if evaluation.published>
+
                     <div class="well">
                       <p>2013-12-18-14:23</p>
-                      <strong>MF1332089&nbsp;</strong>说：
-                      <p>这篇文章很好地讲解了访问控制的原理，值得一读的好文章~</P>
+                      <strong>${evaluation.user.name}&nbsp;</strong>说：
+                      <p>${evaluation.content}</P>
                     </div>
+                    </#if>
 
+                  </#list>
                     
                   </div>
                 </div>
