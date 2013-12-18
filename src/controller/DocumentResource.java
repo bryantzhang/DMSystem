@@ -55,7 +55,7 @@ public class DocumentResource extends ServerResource implements
             dataModel.put("document", document);
 			Representation mailVtl = new ClientResource(
 					LocalReference.createClapReference("/source/template")
-							+ "/docmodify.vtl").get();
+							+ "/docinfo.vtl").get();
 			result = new TemplateRepresentation(mailVtl, dataModel,
 					MediaType.TEXT_HTML);
 		} else {
