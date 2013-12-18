@@ -3,14 +3,13 @@ package controller;
 import org.restlet.Context;
 import org.restlet.Request;
 import org.restlet.Response;
-import org.restlet.data.ChallengeResponse;
-import org.restlet.data.ChallengeScheme;
-import org.restlet.data.Cookie;
-import org.restlet.data.CookieSetting;
-import org.restlet.data.Form;
-import org.restlet.data.Method;
+import org.restlet.data.*;
+import org.restlet.ext.freemarker.TemplateRepresentation;
+import org.restlet.representation.Representation;
+import org.restlet.resource.ClientResource;
 import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.Verifier;
+import restlet.Constants;
 
 public class CookieAuthenticator extends ChallengeAuthenticator {
 
@@ -30,13 +29,13 @@ public class CookieAuthenticator extends ChallengeAuthenticator {
 	@Override
 	protected void afterHandle(Request request, Response response) {
 		super.afterHandle(request, response);
-		Cookie cookie = request.getCookies().getFirst("Credentials");
+		Cookie cookie = request.getCookies().getFirst(Constants.kCredentialsKey);
 
 		if (request.getClientInfo().isAuthenticated() && (cookie == null)) {
 			String identifier = request.getChallengeResponse().getIdentifier();
 			String secret = new String(request.getChallengeResponse()
 					.getSecret());
-			CookieSetting cookieSetting = new CookieSetting("Credentials",
+			CookieSetting cookieSetting = new CookieSetting(Constants.kCredentialsKey,
 					identifier + "=" + secret);
 			cookieSetting.setAccessRestricted(true);
 			cookieSetting.setPath("/");
@@ -48,7 +47,7 @@ public class CookieAuthenticator extends ChallengeAuthenticator {
 
 	@Override
 	protected int beforeHandle(Request request, Response response) {
-		Cookie cookie = request.getCookies().getFirst("Credentials");
+		Cookie cookie = request.getCookies().getFirst(Constants.kCredentialsKey);
 
 		if (cookie != null) {
 			// Extract the challenge response from the cookie
@@ -77,9 +76,13 @@ public class CookieAuthenticator extends ChallengeAuthenticator {
 	}
 
 	@Override
-	public void challenge(Response response, boolean stale) {		
-		String redirectUrl = "/login";
-		response.redirectSeeOther(redirectUrl);
+	public void challenge(Response response, boolean stale) {
+        Representation vtl = new ClientResource(
+        LocalReference.createClapReference("/source/template")
+                + "/login.vtl").get();
+        response.setEntity(new TemplateRepresentation(vtl, response
+                .getRequest().getResourceRef(), MediaType.TEXT_HTML));
+        response.setStatus(Status.CLIENT_ERROR_UNAUTHORIZED);
 	}
 
 }

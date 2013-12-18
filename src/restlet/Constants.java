@@ -4,6 +4,8 @@ package restlet;
  * Created by justinyang on 13-12-18.
  */
 public class Constants {
+    // Cookie
+    public static final String kCredentialsKey = "DMSystemCredentials";
 
     // Roles
     public static final String kAdminRole = "Admin";

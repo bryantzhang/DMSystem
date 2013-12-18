@@ -64,8 +64,8 @@ public class AccountInfoResource extends ServerResource implements AccountInfoRe
             }
 
             String newPassword = form.getFirstValue(Constants.kNewPasswordField);
-
-            if (newPassword == null || newPassword.isEmpty()) {
+            String comfirmPassword = form.getFirstValue(Constants.kNewPasswordConfirmField);
+            if (newPassword == null || newPassword.isEmpty() || comfirmPassword == null || !comfirmPassword.equals(newPassword)) {
                 throw new Exception();
             }
             user.setPassword(newPassword);

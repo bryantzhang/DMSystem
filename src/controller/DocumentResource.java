@@ -24,10 +24,9 @@ import restlet.Constants;
 
 public class DocumentResource extends ServerResource implements
 		DocumentResourceInterface {
-    private UserUtil userUtil = new UserUtil();
 	private DocumentUtil documentUtil = new DocumentUtil();
 
-	/** The document identifier. */
+    /** The document identifier. */
 	private Integer documentId = null;
 
 	/**
@@ -64,77 +63,8 @@ public class DocumentResource extends ServerResource implements
         }
 	}
 
-	@Override
-	public Representation modify(Form form) {
-		try {
-			Map<String, String> values = this._createValueMap(form);
-			this.documentUtil.update(this.documentId, values);
-		} catch (Exception e) {
-			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
-			e.printStackTrace();
-		}
-		return new StringRepresentation("Modify document successfully");
-	}
-
-	@Override
-	public Representation add(Form form) {
-		try {
-			Map<String, String> values = this._createValueMap(form);
-			String username = getClientInfo().getUser().getIdentifier();
-			UserUtil userUtil = new UserUtil();
-			User user = userUtil.findByUsername(username);
-			this.documentUtil.create(user, values);
-		} catch (Exception e) {
-			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
-			e.printStackTrace();
-		}
-		return new StringRepresentation("Add document successfully");
-	}
-
-	@Override
-	public Representation remove() {
-		return null;
-	}
-
-	private Map<String, String> _createValueMap(Form form) throws Exception {
-		Map<String, String> values = new HashMap<String, String>();
-		String title = form.getFirstValue(Constants.kTitleField);
-		if (title != null && !title.isEmpty()) {
-			values.put(Constants.kTitleField, title);
-		}
-		String author = form.getFirstValue(Constants.kAuthorField);
-		if (author != null && !author.isEmpty()) {
-			values.put(Constants.kAuthorField, author);
-		}
-		String abstracts = form.getFirstValue(Constants.kAbstractsField);
-		if (abstracts != null && !abstracts.isEmpty()) {
-			values.put(Constants.kAbstractsField, abstracts);
-		}
-		String keywords = form.getFirstValue(Constants.kKeywordsField);
-		if (keywords != null && !keywords.isEmpty()) {
-			values.put(Constants.kKeywordsField, keywords);
-		}
-		String url = form.getFirstValue(Constants.kUrlField);
-		if (url != null && !url.isEmpty()) {
-			values.put(Constants.kUrlField, url);
-		}
-		String publisher = form.getFirstValue(Constants.kPublisherField);
-		if (publisher != null && !publisher.isEmpty()) {
-			values.put(Constants.kPublisherField, publisher);
-		}
-		String year = form.getFirstValue(Constants.kYearField);
-		if (year != null && !year.isEmpty()) {
-			values.put(Constants.kYearField, year);
-		}
-		String pages = form.getFirstValue(Constants.kPagesField);
-		if (pages != null && !pages.isEmpty()) {
-			values.put(Constants.kPagesField, pages);
-		}
-		String documentType = form
-				.getFirstValue(Constants.kDocumentTypeField);
-		if (documentType != null && !documentType.isEmpty()) {
-			values.put(Constants.kDocumentTypeField, documentType);
-		}
-		return values;
-	}
+    @Override
+    public Representation remove() {
+        return null;
+    }
 }
