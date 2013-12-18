@@ -21,14 +21,14 @@
     </style>
     <script type="text/javascript">
         function select(s){
-            if(s=="图书"){
+            if(s==1){
                 addition=newAddition();
                 divEditor=editDiv("editor-8","编辑");
                 divISBN=editDiv("isbn-13","ISBN");
                 addition.appendChild(divEditor);
                 addition.appendChild(divISBN);
             }
-            if(s=="图书章节"){
+            if(s==2){
                 addition=newAddition();
                 divBookName=editDiv("bookname","图书名");
                 divEditor=editDiv("editor-18","编辑");
@@ -39,7 +39,7 @@
                 addition.appendChild(divISBN);
 
             }
-            if(s=="期刊"){
+            if(s==3){
                 addition=newAddition();
                 divPublication=editDiv("publication-4","出处");
                 divVolume=editDiv("volume","卷");
@@ -50,7 +50,7 @@
                 addition.appendChild(divIssue);
                 addition.appendChild(divDOI);
             }
-            if(s=="会议"){
+            if(s==4){
                 addition=newAddition();
                 divPublication=editDiv("publication-15","出处");
                 divCity=editDiv("city","城市");
@@ -59,15 +59,15 @@
                 addition.appendChild(divCity);
                 addition.appendChild(divDOI);
             }
-            if(s=="学位论文"){
+            if(s==5){
                 addition=newAddition();
                 divschool=editDiv("school","学校");
                 addition.appendChild(divschool);
             }
-            if(s=="技术报告"){
+            if(s==6){
                 addition=newAddition();
             }
-            if(s=="在线资源"){
+            if(s==7){
                 addition=newAddition();
             }
 
@@ -78,7 +78,7 @@
                 div=createDiv();
                 label.setAttribute("for",english);
                 label.innerText = chinese + " *";
-                input.setAttribute("id",english);
+                input.setAttribute("name",english);
                 input.setAttribute("placeholder",chinese);
                 div1.appendChild(input);
                 div.appendChild(label);
@@ -176,7 +176,7 @@
               
           <div class="col-xs-10" style="background-color:#CCEEFF;"><h2 style="background-color:#58D3F7;text-align:center;"><hr/>
             文献录入&nbsp;&nbsp;<small>其中带*为必填</small><hr/></h2>
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method="POST">
               
               <div class="form-group discription">
                 <label for="title" class="col-sm-2 control-label">标题 *</label>
@@ -239,13 +239,13 @@
                 <div class="col-sm-10">
                   <select name="documentType"class="form-control" onchange="select(this.options[this.options.selectedIndex].value)">
 							      <option>请选择文献类型...</option>
-                    <option>图书</option>
-                    <option>图书章节</option>
-                    <option>期刊</option>
-                    <option>会议</option>
-							      <option>学位论文</option>
-							      <option>技术报告</option>
-							      <option>在线资源</option>
+                    <option value="1">图书</option>
+                    <option value="2">图书章节</option>
+                    <option value="3">期刊</option>
+                    <option value="4">会议</option>
+							      <option value="5">学位论文</option>
+							      <option value="6">技术报告</option>
+							      <option value="7">在线资源</option>
                   </select>
                 </div>
               </div>
