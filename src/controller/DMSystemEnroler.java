@@ -6,6 +6,7 @@ import org.restlet.data.ClientInfo;
 import org.restlet.security.Enroler;
 import org.restlet.security.Role;
 
+import restlet.Constants;
 import restlet.DMSystemApplication;
 import dao.User;
 
@@ -30,7 +31,7 @@ public class DMSystemEnroler implements Enroler {
 			user = userUtil.findByUsername(clientInfo.getUser().getIdentifier());
 			
 			if (user != null) {
-				User.Authority authority = User.Authority.values()[user.getAuthority()];
+                Constants.Authority authority = Constants.Authority.values()[user.getAuthority()];
 				Role role =  this.app.getRole(authority);  
 		        clientInfo.getRoles().add(role) ; 
 			}

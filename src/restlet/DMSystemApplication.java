@@ -12,28 +12,25 @@ import org.restlet.security.RoleAuthorizer;
 import dao.User;
 
 public class DMSystemApplication extends Application {
-	public static final String kAdminRole = "Admin";
-	public static final String kNormalRole = "Normal";
-	public static final String kUnauthorizedRole = "Unauthorized";
 
 	public DMSystemApplication() {
 		// Declare the supported roles
-		getRoles().add(new Role(kUnauthorizedRole));
-		getRoles().add(new Role(kNormalRole));
-		getRoles().add(new Role(kAdminRole));
+		getRoles().add(new Role(Constants.kUnauthorizedRole));
+		getRoles().add(new Role(Constants.kNormalRole));
+		getRoles().add(new Role(Constants.kAdminRole));
 	}
 
-	public Role getRole(User.Authority authority) {
+	public Role getRole(Constants.Authority authority) {
 		Role role = null;
 		switch (authority) {
 		case Normal:
-			role = getApplication().getRole(kNormalRole);
+			role = getApplication().getRole(Constants.kNormalRole);
 			break;
 		case Admin:
-			role = getApplication().getRole(kAdminRole);
+			role = getApplication().getRole(Constants.kAdminRole);
 			break;
 		default:
-			role = getApplication().getRole(kUnauthorizedRole);
+			role = getApplication().getRole(Constants.kUnauthorizedRole);
 			break;
 		}
 		return role;
@@ -49,7 +46,7 @@ public class DMSystemApplication extends Application {
 
 		RoleAuthorizer adminAuthorizer = new RoleAuthorizer();
 		adminAuthorizer.getAuthorizedRoles().add(
-				getRole(DMSystemApplication.kAdminRole));
+				getRole(Constants.kAdminRole));
 		adminAuthorizer.setNext(adminRouter);
 
 		Router userRouter = new Router(getContext());
@@ -68,7 +65,7 @@ public class DMSystemApplication extends Application {
 
 		RoleAuthorizer normalAuthorizer = new RoleAuthorizer();
 		normalAuthorizer.getAuthorizedRoles().add(
-				getRole(DMSystemApplication.kNormalRole));
+				getRole(Constants.kNormalRole));
 		normalAuthorizer.setNext(userRouter);
 
 		Router roleRouter = new Router(getContext());

@@ -8,6 +8,7 @@ import org.restlet.resource.ClientResource;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import restlet.Constants;
 import restlet.DMSystemApplication;
 import common.LoginResourceInterface;
 
@@ -17,10 +18,10 @@ public class LoginResource extends ServerResource implements
 	@Override
 	public void login() {
 		if (getRequest().getClientInfo().isAuthenticated()) {
-			if (isInRole(DMSystemApplication.kAdminRole)) {
+			if (isInRole(Constants.kAdminRole)) {
 				String redirectUrl = "/user/admin/index";
 				getResponse().redirectSeeOther(redirectUrl);
-			} else if (isInRole(DMSystemApplication.kNormalRole)) {
+			} else if (isInRole(Constants.kNormalRole)) {
 				String redirectUrl = "/user/normal/index";
 				getResponse().redirectSeeOther(redirectUrl);
 			}
@@ -37,10 +38,10 @@ public class LoginResource extends ServerResource implements
     
     @Post
     public void redirect(Representation input) {
-        if (isInRole(DMSystemApplication.kAdminRole)) {
+        if (isInRole(Constants.kAdminRole)) {
 			String redirectUrl = "/user/admin/index";
 			getResponse().redirectSeeOther(redirectUrl);
-		} else if (isInRole(DMSystemApplication.kNormalRole)) {
+		} else if (isInRole(Constants.kNormalRole)) {
 			String redirectUrl = "/user/normal/index";
 			getResponse().redirectSeeOther(redirectUrl);
 		}

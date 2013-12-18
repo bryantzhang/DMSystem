@@ -20,6 +20,7 @@ import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 
 import common.DocumentResourceInterface;
+import restlet.Constants;
 
 public class DocumentResource extends ServerResource implements
 		DocumentResourceInterface {
@@ -97,42 +98,42 @@ public class DocumentResource extends ServerResource implements
 
 	private Map<String, String> _createValueMap(Form form) throws Exception {
 		Map<String, String> values = new HashMap<String, String>();
-		String title = form.getFirstValue(Document.kTitleProperty);
+		String title = form.getFirstValue(Constants.kTitleField);
 		if (title != null && !title.isEmpty()) {
-			values.put(Document.kTitleProperty, title);
+			values.put(Constants.kTitleField, title);
 		}
-		String author = form.getFirstValue(Document.kAuthorProperty);
+		String author = form.getFirstValue(Constants.kAuthorField);
 		if (author != null && !author.isEmpty()) {
-			values.put(Document.kAuthorProperty, author);
+			values.put(Constants.kAuthorField, author);
 		}
-		String abstracts = form.getFirstValue(Document.kAbstractsProperty);
+		String abstracts = form.getFirstValue(Constants.kAbstractsField);
 		if (abstracts != null && !abstracts.isEmpty()) {
-			values.put(Document.kAbstractsProperty, abstracts);
+			values.put(Constants.kAbstractsField, abstracts);
 		}
-		String keywords = form.getFirstValue(Document.kKeywordsProperty);
+		String keywords = form.getFirstValue(Constants.kKeywordsField);
 		if (keywords != null && !keywords.isEmpty()) {
-			values.put(Document.kKeywordsProperty, keywords);
+			values.put(Constants.kKeywordsField, keywords);
 		}
-		String url = form.getFirstValue(Document.kUrlProperty);
+		String url = form.getFirstValue(Constants.kUrlField);
 		if (url != null && !url.isEmpty()) {
-			values.put(Document.kUrlProperty, url);
+			values.put(Constants.kUrlField, url);
 		}
-		String publisher = form.getFirstValue(Document.kPublisherProperty);
+		String publisher = form.getFirstValue(Constants.kPublisherField);
 		if (publisher != null && !publisher.isEmpty()) {
-			values.put(Document.kPublisherProperty, publisher);
+			values.put(Constants.kPublisherField, publisher);
 		}
-		String year = form.getFirstValue(Document.kYearProperty);
+		String year = form.getFirstValue(Constants.kYearField);
 		if (year != null && !year.isEmpty()) {
-			values.put(Document.kYearProperty, year);
+			values.put(Constants.kYearField, year);
 		}
-		String pages = form.getFirstValue(Document.kPagesProperty);
+		String pages = form.getFirstValue(Constants.kPagesField);
 		if (pages != null && !pages.isEmpty()) {
-			values.put(Document.kPagesProperty, pages);
+			values.put(Constants.kPagesField, pages);
 		}
 		String documentType = form
-				.getFirstValue(Document.kDocumentTypeProperty);
+				.getFirstValue(Constants.kDocumentTypeField);
 		if (documentType != null && !documentType.isEmpty()) {
-			values.put(Document.kDocumentTypeProperty, documentType);
+			values.put(Constants.kDocumentTypeField, documentType);
 		}
 		return values;
 	}

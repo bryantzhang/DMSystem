@@ -13,6 +13,7 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
+import restlet.Constants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,13 +58,17 @@ public class AccountInfoResource extends ServerResource implements AccountInfoRe
         try {
             User user = UserUtil.findById(this.userId);
 
-            Representation result;
-
-            String password = form.getFirstValue(User.kPasswordProperty);
-            if (password == null || password.isEmpty()) {
+            String oldPassword = form.getFirstValue(Constants.kOldPasswordField);
+            if (oldPassword == null || oldPassword.isEmpty() || !user.getPassword().equals(oldPassword)) {
                 throw new Exception();
             }
-            user.setPassword(password);
+
+            String newPassword = form.getFirstValue(Constants.kNewPasswordField);
+
+            if (newPassword == null || newPassword.isEmpty()) {
+                throw new Exception();
+            }
+            user.setPassword(newPassword);
             UserUtil.update(user);
             String redirectUrl = "/login";
             getResponse().redirectSeeOther(redirectUrl);

@@ -30,17 +30,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "Document", catalog = "mydb")
 public class Document implements java.io.Serializable {
 
-	// Using for getting value from form
-	public static final String kTitleProperty = "title";
-	public static final String kAuthorProperty = "author";
-	public static final String kYearProperty = "year";
-	public static final String kPagesProperty = "pages";
-	public static final String kAbstractsProperty = "abstracts";
-	public static final String kKeywordsProperty = "keywords";
-	public static final String kUrlProperty = "url";
-	public static final String kPublisherProperty = "publisher";
-	public static final String kDocumentTypeProperty = "documentType";
-
 	/**
 	 * 
 	 */

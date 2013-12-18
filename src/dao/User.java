@@ -15,12 +15,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "User", catalog = "mydb")
 public class User implements java.io.Serializable {
-	public static enum Authority {
-		Unauthorized, Normal, Admin
-	};
-
-    // Using for getting value from form
-    public static final String kPasswordProperty = "password";
 
 	/**
 	 * 
@@ -33,7 +27,7 @@ public class User implements java.io.Serializable {
 	private String name;
 	private Integer authority;
 	private Set<Document> documents = new HashSet<Document>(0);
-	private Set<Evaluation> evalulations = new HashSet<Evaluation>(0);
+	private Set<Evaluation> evaluations = new HashSet<Evaluation>(0);
 
 	public User() {
 	}
@@ -108,12 +102,12 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Evaluation> getEvalulations() {
-		return evalulations;
+	public Set<Evaluation> getEvaluations() {
+		return evaluations;
 	}
 
-	public void setEvalulations(Set<Evaluation> evalulations) {
-		this.evalulations = evalulations;
+	public void setEvaluations(Set<Evaluation> evaluations) {
+		this.evaluations = evaluations;
 	}
 
 }

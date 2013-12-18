@@ -20,6 +20,7 @@ import model.UserUtil;
 import org.hibernate.Session;
 
 import model.HibernateUtil;
+import restlet.Constants;
 
 public class Test {
 	public static void main(String[] args) throws Exception {
@@ -31,14 +32,14 @@ public class Test {
 		user.setName("justin");
 		user.setPassword("user");
 		user.setUsername("user");
-		user.setAuthority(User.Authority.Normal.ordinal());
+		user.setAuthority(Constants.Authority.Normal.ordinal());
 		session.save(user);
 		
 		User admin = new User();
 		admin.setName("Admin");
 		admin.setPassword("admin");
 		admin.setUsername("admin");
-		admin.setAuthority(User.Authority.Admin.ordinal());
+		admin.setAuthority(Constants.Authority.Admin.ordinal());
 		session.save(admin);
 
 		DocumentType docType = new DocumentType();

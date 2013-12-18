@@ -9,6 +9,7 @@ import java.util.Map;
 import dao.Document;
 import dao.DocumentType;
 import dao.User;
+import restlet.Constants;
 
 /**
  * Utility object for domain model class Document.
@@ -79,52 +80,52 @@ public class DocumentUtil {
 	private void _updateValues(Document document, Map<String, String> values) throws Exception {
 		this._updateBasisValues(document, values);
 		
-		if (values.containsKey(Document.kDocumentTypeProperty)) {
-			Integer docTypeId = Integer.parseInt((String)values.get(Document.kDocumentTypeProperty));
+		if (values.containsKey(Constants.kDocumentTypeField)) {
+			Integer docTypeId = Integer.parseInt((String)values.get(Constants.kDocumentTypeField));
 			this._updateDocumentType(document, docTypeId);
 		}
 	}
 
 	private void _updateBasisValues(Document document,
 			Map<String, String> values) {
-		if (values.containsKey(Document.kTitleProperty)) {
-			String title = (String) values.get(Document.kTitleProperty);
+		if (values.containsKey(Constants.kTitleField)) {
+			String title = (String) values.get(Constants.kTitleField);
 			document.setTitle(title);
 		}
 
-		if (values.containsKey(Document.kAuthorProperty)) {
-			String author = (String) values.get(Document.kAuthorProperty);
+		if (values.containsKey(Constants.kAuthorField)) {
+			String author = (String) values.get(Constants.kAuthorField);
 			document.setAuthor(author);
 		}
 
-		if (values.containsKey(Document.kAbstractsProperty)) {
-			String abstracts = (String) values.get(Document.kAbstractsProperty);
+		if (values.containsKey(Constants.kAbstractsField)) {
+			String abstracts = (String) values.get(Constants.kAbstractsField);
 			document.setAbstracts(abstracts);
 		}
 
-		if (values.containsKey(Document.kKeywordsProperty)) {
-			String keywords = (String) values.get(Document.kKeywordsProperty);
+		if (values.containsKey(Constants.kKeywordsField)) {
+			String keywords = (String) values.get(Constants.kKeywordsField);
 			document.setKeywords(keywords);
 		}
 
-		if (values.containsKey(Document.kUrlProperty)) {
-			String url = (String) values.get(Document.kUrlProperty);
+		if (values.containsKey(Constants.kUrlField)) {
+			String url = (String) values.get(Constants.kUrlField);
 			document.setUrl(url);
 		}
 
-		if (values.containsKey(Document.kPublisherProperty)) {
-			String publisher = (String) values.get(Document.kPublisherProperty);
+		if (values.containsKey(Constants.kPublisherField)) {
+			String publisher = (String) values.get(Constants.kPublisherField);
 			document.setPublisher(publisher);
 		}
 
-		if (values.containsKey(Document.kPagesProperty)) {
+		if (values.containsKey(Constants.kPagesField)) {
 			Integer pages = Integer.parseInt((String) values
-					.get(Document.kPagesProperty));
+					.get(Constants.kPagesField));
 			document.setPages(pages);
 		}
 
-		if (values.containsKey(Document.kYearProperty)) {
-			String year = (String) values.get(Document.kYearProperty);
+		if (values.containsKey(Constants.kYearField)) {
+			String year = (String) values.get(Constants.kYearField);
 			document.setYear(year);
 		}
 
