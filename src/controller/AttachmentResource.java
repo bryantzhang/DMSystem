@@ -23,7 +23,7 @@ public class AttachmentResource extends ServerResource implements
 	private AttachmentUtil attachmentUtil = new AttachmentUtil();
 
 	@Override
-	public Representation retrive() throws Exception {
+	public Representation retrieve() {
 		// TODO Auto-generated method stub
 		return null;
 	}

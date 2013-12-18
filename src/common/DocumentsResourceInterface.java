@@ -8,7 +8,7 @@ import org.restlet.resource.Put;
 public interface DocumentsResourceInterface {
 
     @Get
-    public Representation list() throws Exception;
+    public Representation list();
 
     @Put
     public Representation search(Form form);

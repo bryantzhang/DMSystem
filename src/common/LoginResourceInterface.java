@@ -8,10 +8,10 @@ import org.restlet.resource.Post;
 public interface LoginResourceInterface {
 
 	@Get
-    public void login() throws Exception;
+    public void login();
     
     @Post
-    public void redirect(Representation input) throws Exception;
+    public void redirect(Representation input);
     
     @Delete
     public Representation logout(String username);

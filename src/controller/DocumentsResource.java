@@ -28,18 +28,23 @@ DocumentsResourceInterface {
 	private DocumentUtil documentUtil = new DocumentUtil();
 
 	@Override
-	public Representation list() throws Exception {
-        User currentUser = UserUtil.getCurrentUser(this);
-		List<Document> documents = this.documentUtil.getAll();
-		Map<String, Object> dataModel = new HashMap<String, Object>();
-		dataModel.put("documents", documents);
-        dataModel.put("user", currentUser);
+	public Representation list() {
+        try {
+            User currentUser = UserUtil.getCurrentUser(this);
+            List<Document> documents = this.documentUtil.getAll();
+            Map<String, Object> dataModel = new HashMap<String, Object>();
+            dataModel.put("documents", documents);
+            dataModel.put("user", currentUser);
 
-		Representation mailVtl = new ClientResource(
-				LocalReference.createClapReference("/source/template")
-						+ "/doclist.vtl").get();
-		return new TemplateRepresentation(mailVtl, dataModel,
-				MediaType.TEXT_HTML);
+            Representation mailVtl = new ClientResource(
+                    LocalReference.createClapReference("/source/template")
+                            + "/doclist.vtl").get();
+            return new TemplateRepresentation(mailVtl, dataModel,
+                    MediaType.TEXT_HTML);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new StringRepresentation("Something error");
+        }
 	}
 
 	@Override

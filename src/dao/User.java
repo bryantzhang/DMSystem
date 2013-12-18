@@ -19,6 +19,9 @@ public class User implements java.io.Serializable {
 		Unauthorized, Normal, Admin
 	};
 
+    // Using for getting value from form
+    public static final String kPasswordProperty = "password";
+
 	/**
 	 * 
 	 */

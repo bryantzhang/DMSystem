@@ -62,6 +62,8 @@ public class Document implements java.io.Serializable {
 			0);
 	private Set<Attachment> attachments = new HashSet<Attachment>(0);
 	private Set<Tag> tags = new HashSet<Tag>(0);
+
+    private Set<Evaluation> evaluations = new HashSet<Evaluation>(0);
 	private Set<DocumentRelation> refererRelations = new HashSet<DocumentRelation>(
 			0);
 	private Set<DocumentRelation> refereeRelations = new HashSet<DocumentRelation>(
@@ -253,4 +255,12 @@ public class Document implements java.io.Serializable {
 		this.refereeRelations = refereeRelations;
 	}
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "document")
+    public Set<Evaluation> getEvaluations() {
+        return this.evaluations;
+    }
+
+    public void setEvaluations(Set<Evaluation> evaluations) {
+        this.evaluations = evaluations;
+    }
 }

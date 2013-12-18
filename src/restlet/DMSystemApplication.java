@@ -1,5 +1,6 @@
 package restlet;
 
+import controller.*;
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.resource.Directory;
@@ -8,12 +9,6 @@ import org.restlet.routing.Template;
 import org.restlet.security.Role;
 import org.restlet.security.RoleAuthorizer;
 
-import controller.AccountResource;
-import controller.AttachmentResource;
-import controller.CookieAuthenticator;
-import controller.DocumentResource;
-import controller.DocumentsResource;
-import controller.LoginResource;
 import dao.User;
 
 public class DMSystemApplication extends Application {
@@ -67,6 +62,9 @@ public class DMSystemApplication extends Application {
 				AttachmentResource.class);
 		userRouter.attach("/deleteAttachment/{attachmentId}",
 				AttachmentResource.class);
+        userRouter.attach("/getInfo/{userId}", AccountInfoResource.class);
+        userRouter.attach("/updateInfo/{userId}", AccountInfoResource.class);
+
 
 		RoleAuthorizer normalAuthorizer = new RoleAuthorizer();
 		normalAuthorizer.getAuthorizedRoles().add(

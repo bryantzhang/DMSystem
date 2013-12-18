@@ -15,7 +15,7 @@ public class LoginResource extends ServerResource implements
 		LoginResourceInterface {
 
 	@Override
-	public void login() throws Exception {
+	public void login() {
 		if (getRequest().getClientInfo().isAuthenticated()) {
 			if (isInRole(DMSystemApplication.kAdminRole)) {
 				String redirectUrl = "/user/admin/index";
@@ -36,8 +36,8 @@ public class LoginResource extends ServerResource implements
 
     
     @Post
-    public void redirect(Representation input) throws Exception {
-		if (isInRole(DMSystemApplication.kAdminRole)) {
+    public void redirect(Representation input) {
+        if (isInRole(DMSystemApplication.kAdminRole)) {
 			String redirectUrl = "/user/admin/index";
 			getResponse().redirectSeeOther(redirectUrl);
 		} else if (isInRole(DMSystemApplication.kNormalRole)) {

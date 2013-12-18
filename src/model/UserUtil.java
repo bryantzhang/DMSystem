@@ -10,6 +10,8 @@ import dao.User;
 import org.restlet.Restlet;
 import org.restlet.resource.Resource;
 
+import java.util.List;
+
 /**
  * Utility object for domain model class User.
  * 
@@ -54,5 +56,10 @@ public class UserUtil {
     public static User getCurrentUser(Resource resource) throws Exception {
         String identifier = resource.getClientInfo().getUser().getIdentifier();
         return UserUtil.findByUsername(identifier);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<User> getAllUser() throws Exception {
+        return HibernateUtil.getAll(User.class);
     }
 }

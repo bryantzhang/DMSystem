@@ -9,7 +9,7 @@ import org.restlet.resource.Post;
 public interface DocumentResourceInterface {
 
     @Get
-    public Representation retrieve() throws Exception;
+    public Representation retrieve();
 
     @Post("?type=modify")
     public Representation modify(Form form);

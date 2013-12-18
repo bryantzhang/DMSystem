@@ -8,7 +8,7 @@ import org.restlet.resource.Post;
 public interface AttachmentResourceInterface {
 
     @Get
-    public Representation retrive() throws Exception;
+    public Representation retrieve();
     
     @Post
     public Representation add(Representation input);

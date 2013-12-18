@@ -44,24 +44,23 @@ public class DocumentResource extends ServerResource implements
 	}
 
 	@Override
-	public Representation retrieve() throws Exception {
-		Document document = this.documentUtil.findByIdWithFullInfo(this.documentId);
+	public Representation retrieve() {
+        try {
+            Document document = this.documentUtil.findByIdWithFullInfo(this.documentId);
 
-		Representation result;
-		if (document != null) {
-			Map<String, Object> dataModel = new HashMap<String, Object>();
+            Map<String, Object> dataModel = new HashMap<String, Object>();
             User currentUser = UserUtil.getCurrentUser(this);
             dataModel.put("user", currentUser);
             dataModel.put("document", document);
-			Representation mailVtl = new ClientResource(
-					LocalReference.createClapReference("/source/template")
-							+ "/docinfo.vtl").get();
-			result = new TemplateRepresentation(mailVtl, dataModel,
-					MediaType.TEXT_HTML);
-		} else {
-			result = new StringRepresentation("No such document");
-		}
-		return result;
+            Representation mailVtl = new ClientResource(
+                    LocalReference.createClapReference("/source/template")
+                            + "/docinfo.vtl").get();
+            return new TemplateRepresentation(mailVtl, dataModel,
+                    MediaType.TEXT_HTML);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new StringRepresentation("Something error");
+        }
 	}
 
 	@Override
