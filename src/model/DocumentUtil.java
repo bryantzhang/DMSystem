@@ -66,6 +66,11 @@ public class DocumentUtil {
 		return (Document) HibernateUtil.findById(Document.class, id);
 	}
 
+    public static Document findByIdWithFullInfo(int id) throws Exception {
+        Document document = (Document)HibernateUtil.findById(Document.class, id);
+        return (Document)HibernateUtil.initialize(document);
+    }
+
 	@SuppressWarnings("unchecked")
 	public List<Document> getAll() throws Exception {
 		return HibernateUtil.getAll(Document.class);

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import model.DocumentUtil;
 
+import model.UserUtil;
 import org.restlet.data.Form;
 import org.restlet.data.LocalReference;
 import org.restlet.data.MediaType;
@@ -19,20 +20,24 @@ import org.restlet.resource.ServerResource;
 
 import common.DocumentsResourceInterface;
 import dao.Document;
+import dao.User;
 
 public class DocumentsResource extends ServerResource implements
 DocumentsResourceInterface {
 	
 	private DocumentUtil documentUtil = new DocumentUtil();
-		
+
 	@Override
 	public Representation list() throws Exception {
+        User currentUser = UserUtil.getCurrentUser(this);
 		List<Document> documents = this.documentUtil.getAll();
 		Map<String, Object> dataModel = new HashMap<String, Object>();
 		dataModel.put("documents", documents);
+        dataModel.put("user", currentUser);
+
 		Representation mailVtl = new ClientResource(
-				LocalReference.createClapReference("/source/html")
-						+ "/document_list.vtl").get();
+				LocalReference.createClapReference("/source/template")
+						+ "/doclist.vtl").get();
 		return new TemplateRepresentation(mailVtl, dataModel,
 				MediaType.TEXT_HTML);
 	}

@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import dao.User;
+import org.restlet.Restlet;
+import org.restlet.resource.Resource;
 
 /**
  * Utility object for domain model class User.
@@ -16,25 +18,25 @@ import dao.User;
  */
 public class UserUtil {
 
-	public void add(User transientInstance) throws Exception {
+	public static void add(User transientInstance) throws Exception {
 		HibernateUtil.persist(transientInstance);
 	}
 
-	public void remove(User persistentInstance) throws Exception {
+	public static void remove(User persistentInstance) throws Exception {
 		HibernateUtil.remove(persistentInstance);
 	}
 
-	public void update(User detachedInstance) throws Exception {
+	public static void update(User detachedInstance) throws Exception {
 		if (detachedInstance != null) {
 			HibernateUtil.update(detachedInstance);
 		}
 	}
 
-	public User findById(int id) throws Exception {
+	public static User findById(int id) throws Exception {
 		return (User) HibernateUtil.findById(User.class, id);
 	}
 
-	public User findByUsername(String username) throws Exception {
+	public static User findByUsername(String username) throws Exception {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		session.beginTransaction();
@@ -48,4 +50,9 @@ public class UserUtil {
 			return null;
 		}
 	}
+
+    public static User getCurrentUser(Resource resource) throws Exception {
+        String identifier = resource.getClientInfo().getUser().getIdentifier();
+        return UserUtil.findByUsername(identifier);
+    }
 }

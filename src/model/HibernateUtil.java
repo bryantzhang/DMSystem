@@ -6,6 +6,7 @@ import model.UserUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -140,6 +141,26 @@ public class HibernateUtil {
 	        }
 	    }
 	}
+
+    public static Object initialize(Object proxy) {
+        log.debug("initializing instance");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            if (Hibernate.isInitialized(proxy)) {
+                Hibernate.initialize(proxy);
+            }
+            log.debug("initialize successful");
+        } catch (RuntimeException re) {
+            log.error("initialize failed", re);
+            throw re;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return proxy;
+    }
 	
 	@SuppressWarnings("rawtypes")
 	public static List getAll(Class objectClass) throws Exception {

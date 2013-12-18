@@ -187,7 +187,7 @@ public class Document implements java.io.Serializable {
 		this.createTime = createTime;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "docTypeId", nullable = false)
 	public DocumentType getDocumentType() {
 		return documentType;
@@ -226,7 +226,7 @@ public class Document implements java.io.Serializable {
 		this.attachments = attachments;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "document")
 	public Set<Tag> getTags() {
 		return tags;
 	}

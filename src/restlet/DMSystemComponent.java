@@ -47,7 +47,7 @@ public class DMSystemComponent extends Component {
 		parameters.add("keystoreType", "JKS");
 		parameters.add("keyPassword", "password");
 		// Tracing
-		parameters.set("tracing", "false");
+		parameters.set("tracing", "true");
 		getServers().add(server);
 
 		DMSystemApplication app = new DMSystemApplication();

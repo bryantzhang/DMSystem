@@ -23,6 +23,7 @@ import common.DocumentResourceInterface;
 
 public class DocumentResource extends ServerResource implements
 		DocumentResourceInterface {
+    private UserUtil userUtil = new UserUtil();
 	private DocumentUtil documentUtil = new DocumentUtil();
 
 	/** The document identifier. */
@@ -43,16 +44,18 @@ public class DocumentResource extends ServerResource implements
 	}
 
 	@Override
-	public Representation retrive() throws Exception {
-		Document document = this.documentUtil.findById(this.documentId);
+	public Representation retrieve() throws Exception {
+		Document document = this.documentUtil.findByIdWithFullInfo(this.documentId);
 
-		Representation result = null;
+		Representation result;
 		if (document != null) {
 			Map<String, Object> dataModel = new HashMap<String, Object>();
-			dataModel.put("document", document);
+            User currentUser = UserUtil.getCurrentUser(this);
+            dataModel.put("user", currentUser);
+            dataModel.put("document", document);
 			Representation mailVtl = new ClientResource(
-					LocalReference.createClapReference("/source/html")
-							+ "/Document.vtl").get();
+					LocalReference.createClapReference("/source/template")
+							+ "/docmodify.vtl").get();
 			result = new TemplateRepresentation(mailVtl, dataModel,
 					MediaType.TEXT_HTML);
 		} else {
