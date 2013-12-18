@@ -181,88 +181,10 @@
 		      <div class="col-xs-1"></div>
           <div class="col-xs-10" style="background-color:#CCEEFF;">
             <h2 style="background-color:#58D3F7;text-align:center;"><hr/>
-<<<<<<< HEAD:src/source/template/docmodify.html
             编辑文献资料<hr/></h2>
             <h3><span class="label label-info">标题：Role based access control</span></h3>
 
             <form class="form-horizontal well" role="form">
-=======
-            文献信息<hr/></h2>
-            <h2><span class="label label-info">标题：${document.title}</span>
-              <div class="pull-right">
-              <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-edit"></span>&nbsp;
-              编辑
-              </button>
-              &nbsp;&nbsp;
-              <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;
-              论文下载
-              </button>
-              &nbsp;&nbsp;
-              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-open"></span>&nbsp;
-              上传附件
-              </button>
-            </div>
-            </h2>
-            <br/>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary"><span class="glyphicon glyphicon-tag">&nbsp;标签</span></span></h4>
-                <div class="well">
-                <#list document.tags as tag>
-                <span class="label label-success">${tag.name}</span>
-                </#list>
-              </div>
-            </div>
-
-            <div class="col-xs-12 well">
-            <h4><span class="label label-primary">作者</span></h4>
-              <P class="col-xs-12 well"><strong>${document.author}</strong></P>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">文献类型</span></h4>
-              <p class="col-xs-12 well">${document.documentType.name}</p>
-            </div>
-          <!-- <ul class="nav nav-tabs" id="myTab">
-            <li><a href="#abstract" data-toggle="tab">摘要</a></li>
-            <li><a href="#keywords" data-toggle="tab">关键字</a></li>
-            <li><a href="#reference" data-toggle="tab">文献引用</a></li>
-            <li><a href="#publisher" data-toggle="tab">出版社</a></li>
-            <li><a href="#about" data-toggle="tab">About</a></li>
-            <li><a href="#contact" data-toggle="tab">Contact</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="abstract">文章摘要...</div>
-            <div class="tab-pane" id="keywords">关键字...</div>
-            <div class="tab-pane" id="reference">文章引用...</div>
-            <div class="tab-pane" id="publisher">出版社...</div>
-            <div class="tab-pane" id="about">文章引用...</div>
-            <div class="tab-pane" id="contact">出版社...</div>
-          </div> -->
-              
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">摘要</span></h4>
-              <p class="col-xs-12 well">${document.abstracts}</P>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">关键字</span></h4>
-              <p class="col-xs-12 well">${document.keywords}</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">页码</span></h4>
-              <P class="col-xs-12 well">共${document.pages}页</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">出版社</span></h4>
-              <p class="col-xs-12 well">${document.publisher}</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">在线的网址</span></h4>
-              <p class="col-xs-12 well">${document.url}</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">文献引用</span></h4>
-              <p class="col-xs-12 well">引用</p>
-            </div>
->>>>>>> Modify something:src/source/template/docmodify.vtl
 
               <div class="form-group discription">
                 <label for="author" class="col-sm-2 control-label">标签 *</label>
