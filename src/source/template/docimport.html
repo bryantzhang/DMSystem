@@ -12,9 +12,8 @@
         padding-bottom: 40px;
       }
       .discription{
-          padding-left: 200px;
-          padding-right: 200px;
-          font-size: 20px;
+          padding-left: 20px;
+          padding-right: 50px;
       }
       .addition{
           background: #eeeeee;
@@ -78,7 +77,7 @@
                 div1=createDiv1();
                 div=createDiv();
                 label.setAttribute("for",english);
-                label.innerText=chinese+"*";
+                label.innerText=chinese+" *";
                 input.setAttribute("id",english);
                 input.setAttribute("placeholder",chinese);
                 div1.appendChild(input);
@@ -156,12 +155,16 @@
 
       <div class="container">
         <div class="row">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-6">
-            <form class="well form-search">
+          <br/>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">
+              <img class="pull-left" src="../image/logo.jpg" /></div>
+            <div class="col-xs-8">
+
+            <form class="well form-search"><br/>
               <div class="input-group"><input type="text" class="form-control">
                 <span class="input-group-btn">
-                  <button class="btn btn-primary btn-default" type="button">搜索文章</button>
+                  <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<strong>搜索文章</strong></button>
                 </span>
               </div><!-- /input-group -->
             </form>
@@ -169,73 +172,71 @@
         </div>
 
         <div class="row">
-		      <div class="col-xs-2">
-			      <ul class="nav nav-pills nav-stacked">
-				      <li class="active"><a href=""><span class="glyphicon glyphicon-import"></span>&nbsp;文献录入</a></li>
-				      <li><a href=""><span class="glyphicon glyphicon-edit"></span>&nbsp;文献信息修改</a></li>
-			      </ul>
-		      </div>
+		      
+          <div class="col-xs-1"></div>
               
-          <div class="col-xs-8"><hr/><h2>文献录入&nbsp;&nbsp;<small>其中带*为必填</small></h2></div>
+          <div class="col-xs-10" style="background-color:#CCEEFF;"><h2 style="background-color:#58D3F7;text-align:center;"><hr/>
+            文献录入&nbsp;&nbsp;<small>其中带*为必填</small><hr/></h2>
             <form class="form-horizontal" role="form">
+              
               <div class="form-group discription">
-                <label for="title" class="col-sm-2 control-label">标题*</label>
+                <label for="title" class="col-sm-2 control-label">标题 *</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="title" placeholder="标题">
                 </div>
               </div>
             
               <div class="form-group discription">
-                <label for="author" class="col-sm-2 control-label">作者*</label>
+                <label for="author" class="col-sm-2 control-label">作者 *</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="author" placeholder="作者">
                 </div>
               </div>
                   
               <div class="form-group discription">
-                <label for="publishyear" class="col-sm-2 control-label">出版年份*</label>
+                <label for="publishyear" class="col-sm-2 control-label">出版年份 *</label>
                 <div class="col-sm-10">
                    <input type="text" class="form-control" id="publishyear" placeholder="出版年份">
                 </div>
               </div>
               
               <div class="form-group discription">
-                <label for="page" class="col-sm-2 control-label">页码*</label>
+                <label for="page" class="col-sm-2 control-label">页码 *</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="page" placeholder="页码">
                 </div>
               </div>
               
               <div class="form-group discription">
-                <label for="abstract" class="col-sm-2 control-label">摘要*</label>
+                <label for="abstract" class="col-sm-2 control-label">摘要 *</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="abstract" rows="3" placeholder="摘要"></textarea>
                 </div>
               </div>
               
               <div class="form-group discription">
-                <label for="keyword" class="col-sm-2 control-label">关键字*</label>
+                <label for="keyword" class="col-sm-2 control-label">关键字 *</label>
                 <div class="col-sm-10">
-                   <input type="text" class="form-control" id="keyword" placeholder="关键字">
+                   <textarea class="form-control" id="keywords" rows="3" placeholder="关键字"></textarea>
                 </div>
               </div>
      
               <div class="form-group discription">
-                 <label for="publisher" class="col-sm-2 control-label">出版社*</label>
+                 <label for="publisher" class="col-sm-2 control-label">出版社 *</label>
                  <div class="col-sm-10">
                    <input type="text" class="form-control" id="publisher" placeholder="出版社">
                  </div>
               </div>
        
               <div class="form-group discription">
-                <label for="url" class="col-sm-2 control-label">在线网址*</label>
+                <label for="url" class="col-sm-2 control-label">在线的网址 *</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="url" placeholder="在线的网址">
                 </div>
               </div>
             
               <div class="form-group discription">
-                <label for="type" class="col-sm-2 control-label">文献类型*</label>
+                <label for="type" class="col-sm-2 control-label">文献类型 *</label>
                 <div class="col-sm-10">
                   <select class="form-control" onchange="select(this.options[this.options.selectedIndex].value)">
 							      <option>请选择文献类型...</option>
@@ -249,57 +250,23 @@
                   </select>
                 </div>
               </div>
-              <div class="discription addition">
 
+              <div class="discription addition"></div>
+              
+              <div class="row">
+                <div class="col-xs-5"></div>
+                <div class=" col-xs-7">
+                  <button type="button" class="btn btn-default">取消录入文献</button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="button" class="btn btn-primary">录入文献</button>
+                </div>
               </div>
-               
-            <div class="col-xs-2"></div>
-              <div class="col-xs-8"><hr/><h2>附件上传</h2></div>
-                <div class="form-group discription">
-                  <label for="file" class="col-sm-2 control-label">论文*</label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="file">
-                  </div>
-                </div>
-                  
-                <div class="form-group discription">
-                  <label for="ppt" class="col-sm-2 control-label">幻灯片</label>
-                  <div class="col-sm-10">
-                     <input type="file" class="form-control" id="ppt">
-                  </div>
-                </div>
-          
-                <div class="form-group discription">
-                    <label for="poster" class="col-sm-2 control-label">海报</label>
-                    <div class="col-sm-10">
-                      <input type="file" class="form-control" id="poster">
-                    </div>
-                </div>
-          
-                <div class="form-group discription">
-                  <label for="presentation" class="col-sm-2 control-label">演示</label>
-                  <div class="col-sm-10">
-                    <input type="file" class="form-control" id="presentation">
-                  </div>
-                </div>
-                 
-                <div class="form-group discription">
-                    <label for="other" class="col-sm-2 control-label">补充</label>
-                    <div class="col-sm-10">
-                      <input type="file" class="form-control" id="other">
-                    </div>
-                </div>
-				  
-                <div class="form-group discription">
-                  <label for="code" class="col-sm-2 control-label">代码</label>
-                  <div class="col-sm-10">
-                   <input type="file" class="form-control" id="code">
-                  </div>
-                </div>
-              </form>
+              <br/>
+            </form>
+          </div>
           </div>
           <footer>
-            <a class="pull-right" href="#"><span class="glyphicon glyphicon-arrow-up"></i>返回顶部</a>
+            <a class="pull-right" href="#"><span class="glyphicon glyphicon-arrow-up"></span>返回顶部</a>
           </footer>
         </div>
   </body>

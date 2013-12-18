@@ -13,11 +13,6 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
-      .discription{
-          padding-left: 200px;
-          padding-right: 200px;
-          font-size: 20px;
-      }
     </style>
 
   </head>
@@ -58,9 +53,13 @@
 
       <div class="container">
         <div class="row">
-            <div class="col-xs-2"></div>
+          <br/>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">
+              <img class="pull-left" src="../image/logo.jpg" /></div>
             <div class="col-xs-8">
-            <form class="well form-search">
+
+            <form class="well form-search"><br/>
               <div class="input-group"><input type="text" class="form-control">
                 <span class="input-group-btn">
                   <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<strong>搜索文章</strong></button>
@@ -72,14 +71,17 @@
 
         <div class="row">
 		      <div class="col-xs-1"></div>
-              
           <div class="col-xs-10" style="background-color:#CCEEFF;"><hr/>
             <h2><span class="label label-info">标题：Role based access control</span>
               <div class="pull-right">
+              <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-edit"></span>&nbsp;
+              编辑
+              </button>
+              &nbsp;&nbsp;
               <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;
               论文下载
               </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
               <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-open"></span>&nbsp;
               上传附件
               </button>
@@ -178,9 +180,8 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-primary">发布评论</button>
           </div>
-          
         </div>
-<br/>
+
         <div class="row">
           <div class="col-xs-12">
             <div class="panel-group" id="accordion">
@@ -230,14 +231,14 @@
                     <textarea class="form-control" id="improvement" rows="3" placeholder="可以进一步改进的地方..."></textarea>
                     </div>
                   </div>
-
                   <div class="row">
-                  <div class=" col-xs-11 pull-right">
+                    <div class="col-xs-8"></div>
+                  <div class=" col-xs-4 pull-right">
                     <button type="button" class="btn btn-default">保存为草稿</button>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-primary">发布评论</button>
                   </div>
-                  <div class="col-xs-1"></div>
+                </div>
                 </form>
                   
                 </div>
@@ -250,7 +251,7 @@
       </div>
     </div>
         <footer>
-          <a class="pull-right" href="#"><span class="glyphicon glyphicon-arrow-up"></i>返回顶部</a>
+          <a class="pull-right" href="#"><span class="glyphicon glyphicon-arrow-up"></span>返回顶部</a>
         </footer>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
