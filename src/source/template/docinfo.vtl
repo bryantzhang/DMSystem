@@ -39,7 +39,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href=""><span class="glyphicon glyphicon-user"></span>&nbsp;用户id</a>
+              <a href=""><span class="glyphicon glyphicon-user"></span>&nbsp;${user.name}</a>
             </li>
             <li>
               <a href=""><span class="glyphicon glyphicon-log-out"></span>&nbsp;注销</a>
@@ -78,11 +78,11 @@
             <div class="bread-nav">
               <ol class="breadcrumb">
                 <li><a href="doclist.html"><b>文献列表</b></a></li>
-                <li class="active">Role based access control</li>
+                <li class="active">${document.title}</li>
               </ol>
             </div>
 
-            <h2><span class="label label-info">标题：Role based access control</span>
+            <h2><span class="label label-info">标题：${document.title}</span>
               <div class="pull-right">
               <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-edit"></span>&nbsp;
               编辑
@@ -101,58 +101,42 @@
             <div class="col-xs-12 well">
               <h4><span class="label label-primary"><span class="glyphicon glyphicon-tag">&nbsp;标签</span></span></h4>
                 <div class="well">
-                <span class="label label-success">访问控制</span>
-                <span class="label label-success">网络安全</span>
-                <span class="label label-success">管理权限</span>
+                  
+                  <#list document.tags as tag>
+                    <span class="label label-success">${tag.name}</span>
+                  </#list>
+                  
               </div>
             </div>
 
             <div class="col-xs-12 well">
             <h4><span class="label label-primary">作者</span></h4>
-              <P class="col-xs-12 well"><strong>Sandhu, R.S. ; George Mason Univ., Fairfax, VA, USA ; Coyne, E.J. ; Feinstein, H.L. ; Youman, C.E.</strong></P>
+              <P class="col-xs-12 well"><strong>${document.author}</strong></P>
             </div>
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">文献类型</span></h4>
-              <p class="col-xs-12 well">会议论文</p>
+              <p class="col-xs-12 well">${document.title}</p>
             </div>
-          <!-- <ul class="nav nav-tabs" id="myTab">
-            <li><a href="#abstract" data-toggle="tab">摘要</a></li>
-            <li><a href="#keywords" data-toggle="tab">关键字</a></li>
-            <li><a href="#reference" data-toggle="tab">文献引用</a></li>
-            <li><a href="#publisher" data-toggle="tab">出版社</a></li>
-            <li><a href="#about" data-toggle="tab">About</a></li>
-            <li><a href="#contact" data-toggle="tab">Contact</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="abstract">文章摘要...</div>
-            <div class="tab-pane" id="keywords">关键字...</div>
-            <div class="tab-pane" id="reference">文章引用...</div>
-            <div class="tab-pane" id="publisher">出版社...</div>
-            <div class="tab-pane" id="about">文章引用...</div>
-            <div class="tab-pane" id="contact">出版社...</div>
-          </div> -->
               
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">摘要</span></h4>
-              <p class="col-xs-12 well">The basic concept of role-based access control (RBAC) is that permissions are associated with roles, and users are made members of appropriate roles, thereby acquiring the roles' permissions. This idea has been around since the advent of multi-user computing. Until recently, however, RBAC has received little attention from the research community. This chapter describes the motivations, results, and open issues in recent MAC research.
-
-              The chapter focuses on four areas. First, RBAC is a multidimensional concept that can range from very simple at one extreme to quite complex and sophisticated at the other. This presents problems in coming up with a definitive model of RBAC. We see how this impasse is resolved by having a family of models which can accommodate all these variations. Second, we discuss how RBAC can be used to manage itself. Recent models developed for this purpose are presented. Third, the flexibility of RBAC can be demonstrated in many ways. Here we show how RBAC can be configured to enforce different variations of classical lattice-based mandatory access controls. Fourth, we describe a conceptual three-tier architecture for specification and enforcement of RBAC. The chapter concludes with a discussion of open issues in RBAC.</P>
+              <p class="col-xs-12 well">${document.abstracts}</P>
             </div>
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">关键字</span></h4>
-              <p class="col-xs-12 well">Access control, Authorization, Data security, Government, NIST, Permission, Privacy, Resource management, Software systems Telephony</p>
+              <p class="col-xs-12 well">${document.keywords}</p>
             </div>
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">页码</span></h4>
-              <P class="col-xs-12 well">第43页。</p>
+              <P class="col-xs-12 well">${document.pages}</p>
             </div>
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">出版社</span></h4>
-              <p class="col-xs-12 well">Access control, Authorization, Data security, Government, NIST, Permission, Privacy, Resource management, Software systems Telephony</p>
+              <p class="col-xs-12 well">${document.publisher}</p>
             </div>
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">在线的网址</span></h4>
-              <p class="col-xs-12 well"><a href="">在线的网址</a></p>
+              <p class="col-xs-12 well"><a href=${document.url}>${document.url}</a></p>
             </div>
             <div class="col-xs-12 well">
               <h4><span class="label label-primary">文献引用</span></h4>
@@ -173,21 +157,15 @@
               
                 <div id="collapseComment" class="panel-collapse collapse out">
                   <div class="panel-body">
+                    
+                    
                     <div class="well">
                       <p>2013-12-18-14:23</p>
                       <strong>MF1332089&nbsp;</strong>说：
                       <p>这篇文章很好地讲解了访问控制的原理，值得一读的好文章~</P>
                     </div>
-                    <div class="well">
-                      <p>2013-12-18-16:23</p>
-                      <strong>MF1332070&nbsp;</strong>说：
-                      <p>楼上+1，赞一个~</P>
-                    </div>
-                    <div class="well">
-                      <p>2013-12-18-18:23</p>
-                      <strong>MF1332082&nbsp;</strong>说：
-                      <p>既然楼上们说文章不错，我也读了一遍，真为楼上们的智商拙计，这文章也叫不错->_-></P>
-                    </div>
+
+                    
                   </div>
                 </div>
               </div>
