@@ -16,6 +16,112 @@
       .bread-nav{
         font-size: 20px;
       }
+
+      .discription{
+          padding-left: 20px;
+          padding-right: 50px;
+      }
+      .addition{
+          background: #eeeeee;
+      }
+    </style>
+    <script type="text/javascript">
+        function select(s){
+            if(s=="图书"){
+                addition=newAddition();
+                divEditor=editDiv("editor","编辑");
+                divISBN=editDiv("isbn","ISBN");
+                addition.appendChild(divEditor);
+                addition.appendChild(divISBN);
+            }
+            if(s=="图书章节"){
+                addition=newAddition();
+                divBookName=editDiv("bookname","图书名");
+                divEditor=editDiv("editor","编辑");
+                divISBN=editDiv("isbn","ISBN");
+
+                addition.appendChild(divBookName);
+                addition.appendChild(divEditor);
+                addition.appendChild(divISBN);
+
+            }
+            if(s=="期刊"){
+                addition=newAddition();
+                divPublication=editDiv("publication","出处");
+                divVolume=editDiv("volume","卷");
+                divIssue=editDiv("issue","期");
+                divDOI=editDiv("doi","DOI");
+                addition.appendChild(divPublication);
+                addition.appendChild(divVolume);
+                addition.appendChild(divIssue);
+                addition.appendChild(divDOI);
+            }
+            if(s=="会议"){
+                addition=newAddition();
+                divPublication=editDiv("publication","出处");
+                divCity=editDiv("city","城市");
+                divDOI=editDiv("doi","DOI");
+                addition.appendChild(divPublication);
+                addition.appendChild(divCity);
+                addition.appendChild(divDOI);
+            }
+            if(s=="学位论文"){
+                addition=newAddition();
+                divschool=editDiv("school","学校");
+                addition.appendChild(divschool);
+            }
+            if(s=="技术报告"){
+                addition=newAddition();
+            }
+            if(s=="在线资源"){
+                addition=newAddition();
+            }
+
+            function editDiv(english,chinese){
+                label=createLabel();
+                input=createInput();
+                div1=createDiv1();
+                div=createDiv();
+                label.setAttribute("for",english);
+                label.innerText=chinese+" *";
+                input.setAttribute("id",english);
+                input.setAttribute("placeholder",chinese);
+                div1.appendChild(input);
+                div.appendChild(label);
+                div.appendChild(div1);
+                return div;
+            }
+            function newAddition(){
+                var addition=document.getElementsByClassName("addition")[0];
+                while(addition.hasChildNodes()){
+                    addition.removeChild(addition.firstChild);
+                }//删除所有原有节点
+                addition.setAttribute("class","discription addition show");//设置可见
+                return addition;
+            }
+            function createDiv(){
+                div=document.createElement("div");
+                div.className="form-group";
+                return div;
+            }
+            function createDiv1(){
+                div1=document.createElement("div");
+                div1.className="col-sm-9";
+                return div1;
+            }
+            function createLabel(){
+                label=document.createElement("label");
+                label.className="col-sm-2 control-label";
+                return label;
+            }
+            function createInput(){
+                input=document.createElement("input");
+                input.setAttribute("type","text");
+                input.setAttribute("class","form-control");
+                return input;
+            }
+        }
+    </script>
     </style>
 
   </head>
@@ -74,273 +180,145 @@
         <div class="row">
 		      <div class="col-xs-1"></div>
           <div class="col-xs-10" style="background-color:#CCEEFF;">
-            <br/>
-            <div class="bread-nav">
-              <ol class="breadcrumb">
-                <li><a href="doclist.html"><b>文献列表</b></a></li>
-                <li class="active">Role based access control</li>
-              </ol>
-            </div>
+            <h2 style="background-color:#58D3F7;text-align:center;"><hr/>
+            编辑文献资料<hr/></h2>
+            <h3><span class="label label-info">标题：Role based access control</span></h3>
 
-            <h2><span class="label label-info">标题：Role based access control</span>
-              <div class="pull-right">
-              <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-edit"></span>&nbsp;
-              编辑
-              </button>
-              &nbsp;&nbsp;
-              <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;
-              论文下载
-              </button>
-              &nbsp;&nbsp;
-              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-open"></span>&nbsp;
-              上传附件
-              </button>
-            </div>
-            </h2>
-            <br/>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary"><span class="glyphicon glyphicon-tag">&nbsp;标签</span></span></h4>
-                <div class="well">
-                <span class="label label-success">访问控制</span>
-                <span class="label label-success">网络安全</span>
-                <span class="label label-success">管理权限</span>
-              </div>
-            </div>
+            <form class="form-horizontal well" role="form">
 
-            <div class="col-xs-12 well">
-            <h4><span class="label label-primary">作者</span></h4>
-              <P class="col-xs-12 well"><strong>Sandhu, R.S. ; George Mason Univ., Fairfax, VA, USA ; Coyne, E.J. ; Feinstein, H.L. ; Youman, C.E.</strong></P>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">文献类型</span></h4>
-              <p class="col-xs-12 well">会议论文</p>
-            </div>
-          <!-- <ul class="nav nav-tabs" id="myTab">
-            <li><a href="#abstract" data-toggle="tab">摘要</a></li>
-            <li><a href="#keywords" data-toggle="tab">关键字</a></li>
-            <li><a href="#reference" data-toggle="tab">文献引用</a></li>
-            <li><a href="#publisher" data-toggle="tab">出版社</a></li>
-            <li><a href="#about" data-toggle="tab">About</a></li>
-            <li><a href="#contact" data-toggle="tab">Contact</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="abstract">文章摘要...</div>
-            <div class="tab-pane" id="keywords">关键字...</div>
-            <div class="tab-pane" id="reference">文章引用...</div>
-            <div class="tab-pane" id="publisher">出版社...</div>
-            <div class="tab-pane" id="about">文章引用...</div>
-            <div class="tab-pane" id="contact">出版社...</div>
-          </div> -->
-              
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">摘要</span></h4>
-              <p class="col-xs-12 well">The basic concept of role-based access control (RBAC) is that permissions are associated with roles, and users are made members of appropriate roles, thereby acquiring the roles' permissions. This idea has been around since the advent of multi-user computing. Until recently, however, RBAC has received little attention from the research community. This chapter describes the motivations, results, and open issues in recent MAC research.
-
-              The chapter focuses on four areas. First, RBAC is a multidimensional concept that can range from very simple at one extreme to quite complex and sophisticated at the other. This presents problems in coming up with a definitive model of RBAC. We see how this impasse is resolved by having a family of models which can accommodate all these variations. Second, we discuss how RBAC can be used to manage itself. Recent models developed for this purpose are presented. Third, the flexibility of RBAC can be demonstrated in many ways. Here we show how RBAC can be configured to enforce different variations of classical lattice-based mandatory access controls. Fourth, we describe a conceptual three-tier architecture for specification and enforcement of RBAC. The chapter concludes with a discussion of open issues in RBAC.</P>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">关键字</span></h4>
-              <p class="col-xs-12 well">Access control, Authorization, Data security, Government, NIST, Permission, Privacy, Resource management, Software systems Telephony</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">页码</span></h4>
-              <P class="col-xs-12 well">第43页。</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">出版社</span></h4>
-              <p class="col-xs-12 well">Access control, Authorization, Data security, Government, NIST, Permission, Privacy, Resource management, Software systems Telephony</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">在线的网址</span></h4>
-              <p class="col-xs-12 well">http://ieeexplore.ieee.org/xpl/abstractKeywords.jsp?arnumber=485845&reason=concurrency</p>
-            </div>
-            <div class="col-xs-12 well">
-              <h4><span class="label label-primary">文献引用</span></h4>
-              <p class="col-xs-12 well">引用</p>
-            </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading" style="background:#0174DF;">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseComment">
-                      评论&nbsp;&nbsp;<span class="badge">3</span>
-                    </a>
-                  </h4>
-                </div>
-              
-                <div id="collapseComment" class="panel-collapse collapse out">
-                  <div class="panel-body">
+              <div class="form-group discription">
+                <label for="author" class="col-sm-2 control-label">标签 *</label>
+                <div class="col-sm-9">
                     <div class="well">
-                      <p>2013-12-18-14:23</p>
-                      <strong>MF1332089&nbsp;</strong>说：
-                      <p>这篇文章很好地讲解了访问控制的原理，值得一读的好文章~</P>
+                      
+                      <span class="label label-success">访问控制</span>
+                      <button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+
+                      <span class="label label-success">网络安全</span>
+                      <button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+
+                      <span class="label label-success">管理权限</span>
+                      <button type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+                      
+                      <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#tagModal"><span class="glyphicon glyphicon-plus"></span></button>
                     </div>
-                    <div class="well">
-                      <p>2013-12-18-16:23</p>
-                      <strong>MF1332070&nbsp;</strong>说：
-                      <p>楼上+1，赞一个~</P>
-                    </div>
-                    <div class="well">
-                      <p>2013-12-18-18:23</p>
-                      <strong>MF1332082&nbsp;</strong>说：
-                      <p>既然楼上们说文章不错，我也读了一遍，真为楼上们的智商拙计，这文章也叫不错->_-></P>
-                    </div>
-                  </div>
+
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-11">
-          <br/>
-          <textarea class="form-control" rows="3" placeholder="请输入评论内容..."></textarea>
-          <br/>
-          <div class="pull-right">
-            <button type="button" class="btn btn-default">保存为草稿</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-primary">发布评论</button>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading" style="background:#0174DF;">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseDetail">
-                      对文章进行详细评论...
-                    </a>
-                  </h4>
-                </div>
-              
-                <div id="collapseDetail" class="panel-collapse collapse out">
-                  <div class="panel-body">
-                    <form class="form-horizontal" role="form">
-                      <div class="form-group">
-                      <label for="title" class="col-sm-2 control-label">解决的问题</label>
-                      <div class="col-sm-9">
-                      <textarea class="form-control" id="problem" rows="3" placeholder="文章解决的问题..."></textarea>
-                      </div>
-                  </div>
             
-                  <div class="form-group">
-                    <label for="author" class="col-sm-2 control-label">主要思路</label>
-                    <div class="col-sm-9">
-                    <textarea class="form-control" id="idea" rows="3" placeholder="主要的思路..."></textarea>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="publishyear" class="col-sm-2 control-label">实验结果</label>
-                    <div class="col-sm-9">
-                    <textarea class="form-control" id="experiment" rows="3" placeholder="实验取得的结果..."></textarea>
-                    </div>
-                  </div>
-              
-                  <div class="form-group">
-                    <label for="page" class="col-sm-2 control-label">贡献</label>
-                    <div class="col-sm-9">
-                    <textarea class="form-control" id="contribution" rows="3" placeholder="作出的贡献..."></textarea>
-                    </div>
-                  </div>
-              
-                  <div class="form-group">
-                    <label for="abstract" class="col-sm-2 control-label">改进</label>
-                    <div class="col-sm-9">
-                    <textarea class="form-control" id="improvement" rows="3" placeholder="可以进一步改进的地方..."></textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-8"></div>
-                  <div class=" col-xs-4 pull-right">
-                    <button type="button" class="btn btn-default">保存为草稿</button>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" class="btn btn-primary">发布评论</button>
-                  </div>
-                </div>
-                </form>
-                  
-                </div>
+              <div class="form-group discription">
+                <label for="author" class="col-sm-2 control-label">作者 *</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="author" value="Sandhu, R.S. ; George Mason Univ., Fairfax, VA, USA ; Coyne, E.J. ; Feinstein, H.L. ; Youman, C.E."></input>
                 </div>
               </div>
-            </div>
+                  
+              <div class="form-group discription">
+                <label for="publishyear" class="col-sm-2 control-label">出版年份 *</label>
+                <div class="col-sm-9">
+                   <input type="text" class="form-control" id="publishyear" placeholder="出版年份...">
+                </div>
+              </div>
+              
+              <div class="form-group discription">
+                <label for="page" class="col-sm-2 control-label">页码 *</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="page" placeholder="页码...">
+                </div>
+              </div>
+              
+              <div class="form-group discription">
+                <label for="abstract" class="col-sm-2 control-label">摘要 *</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" id="abstract" rows="5">The basic concept of role-based access control (RBAC) is that permissions are associated with roles, and users are made members of appropriate roles, thereby acquiring the roles' permissions. This idea has been around since the advent of multi-user computing. Until recently, however, RBAC has received little attention from the research community. This chapter describes the motivations, results, and open issues in recent MAC research.</textarea>
+                </div>
+              </div>
+              
+              <div class="form-group discription">
+                <label for="keyword" class="col-sm-2 control-label">关键字 *</label>
+                <div class="col-sm-9">
+                   <textarea class="form-control" id="keywords" rows="3">Access control, Authorization, Data security, Government, NIST, Permission, Privacy, Resource management, Software systems Telephony
+                   </textarea>
+                </div>
+              </div>
+     
+              <div class="form-group discription">
+                 <label for="publisher" class="col-sm-2 control-label">出版社 *</label>
+                 <div class="col-sm-9">
+                   <input type="text" class="form-control" id="publisher" placeholder="出版社...">
+                 </div>
+              </div>
+       
+              <div class="form-group discription">
+                <label for="url" class="col-sm-2 control-label">在线的网址 *</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="url" value="http://ieeexplore.ieee.org/xpl/abstractKeywords.jsp?arnumber=485845&reason=concurrency">
+                </div>
+              </div>
+            
+              <div class="form-group discription">
+                <label for="type" class="col-sm-2 control-label">文献类型 *</label>
+                <div class="col-sm-9">
+                  <select class="form-control" onchange="select(this.options[this.options.selectedIndex].value)">
+                    <option>请选择文献类型...</option>
+                    <option>图书</option>
+                    <option>图书章节</option>
+                    <option>期刊</option>
+                    <option>会议</option>
+                    <option>学位论文</option>
+                    <option>技术报告</option>
+                    <option>在线资源</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="discription addition"></div>
+              
+              <div class="row">
+                <div class="col-xs-5"></div>
+                <div class=" col-xs-7">
+                  <button type="button" class="btn btn-default">取消修改</button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="button" class="btn btn-primary">保存修改</button>
+                </div>
+              </div>
+              <br/>
+            </form>
           </div>
         </div>
-
-      </div>
-    </div>
+        
         <footer>
           <a class="pull-right" href="#"><span class="glyphicon glyphicon-arrow-up"></span>返回顶部</a>
-        </footer>
+        </footer>  
+        
+        </div>
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">选择附件上传</h4>
+                <h4 class="modal-title" id="myModalLabel">新建一个标签</h4>
               </div>
-              
               <div class="modal-body">
-
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="document" class="col-sm-2 control-label">论文*</label>
+                <div class="form-group">
+                  <div class="col-xs-2"></div>
                     <div class="col-sm-8">
-                      <input type="file" class="form-control" id="document">
+                      <input type="text" class="form-control" id="tag" placeholder="标签名称...">
                     </div>
-                  </div>
-  
-                  <div class="form-group">
-                    <label for="ppt" class="col-sm-2 control-label">幻灯片</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control" id="ppt">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="poster" class="col-sm-2 control-label">海报</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control" id="poster">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="presentation" class="col-sm-2 control-label">演示</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control" id="presentation">
-                    </div>
-                  </div>
-  
-                  <div class="form-group">
-                    <label for="other" class="col-sm-2 control-label">补充</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control" id="other">
-                    </div>
-                  </div>
-  
-                  <div class="form-group">
-                    <label for="code" class="col-sm-2 control-label">代码</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control" id="code">
-                    </div>
-                  </div>
-                </form>
-
+                </div>
               </div>
-        
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">上传</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">新建标签</button>
               </div>
             </div>
           </div>
-        
-        
+        </div>
 
   </body>
 </html>
