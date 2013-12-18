@@ -45,6 +45,41 @@ public class Test {
 		DocumentType docType = new DocumentType();
 		docType.setName("issue");
 		session.save(docType);
+		
+		DocumentType dTypeBook = new DocumentType();
+		dTypeBook.setId(4);
+		dTypeBook.setName("图书");
+		session.save(dTypeBook);
+		
+		DocumentType dTypeSection = new DocumentType();
+		dTypeSection.setId(5);
+		dTypeSection.setName("图书章节");
+		session.save(dTypeSection);
+		
+		DocumentType dTypeJournal = new DocumentType();
+		dTypeJournal.setId(6);
+		dTypeJournal.setName("期刊");
+		session.save(dTypeJournal);
+		
+		DocumentType dTypeConference = new DocumentType();
+		dTypeConference.setId(7);
+		dTypeConference.setName("会议");
+		session.save(dTypeConference);
+		
+		DocumentType dTypeThesis = new DocumentType();
+		dTypeThesis.setId(8);
+		dTypeThesis.setName("学位论文");
+		session.save(dTypeThesis);
+		
+		DocumentType dTypeReport = new DocumentType();
+		dTypeReport.setId(9);
+		dTypeReport.setName("技术报告");
+		session.save(dTypeReport);
+		
+		DocumentType dTypeOnline = new DocumentType();
+		dTypeOnline.setId(10);
+		dTypeOnline.setName("在线资源");
+		session.save(dTypeOnline);
 
 		for (int i = 0; i < 10; i++) {
 			Document document = new Document();
@@ -154,12 +189,77 @@ public class Test {
 
 		DocumentExtraProperty documentExtraProperty = new DocumentExtraProperty();
 		documentExtraProperty.setPropertyName("Home");
-
 		documentExtraProperty.setDocumentType(docType);
-
+		session.save(documentExtraProperty);
+		
+		
+		documentExtraProperty.setId(4);
+		documentExtraProperty.setPropertyName("出处");
+		documentExtraProperty.setDocumentType(dTypeJournal);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(15);
+		documentExtraProperty.setPropertyName("出处");
+		documentExtraProperty.setDocumentType(dTypeConference);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(5);
+		documentExtraProperty.setPropertyName("城市");
+		documentExtraProperty.setDocumentType(dTypeConference);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(6);
+		documentExtraProperty.setPropertyName("卷");
+		documentExtraProperty.setDocumentType(dTypeJournal);
 		session.save(documentExtraProperty);
 
+		documentExtraProperty.setId(7);
+		documentExtraProperty.setPropertyName("期");
+		documentExtraProperty.setDocumentType(dTypeJournal);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(8);
+		documentExtraProperty.setPropertyName("编辑");
+		documentExtraProperty.setDocumentType(dTypeBook);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(18);
+		documentExtraProperty.setPropertyName("编辑");
+		documentExtraProperty.setDocumentType(dTypeSection);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(9);
+		documentExtraProperty.setPropertyName("图书名");
+		documentExtraProperty.setDocumentType(dTypeSection);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(10);
+		documentExtraProperty.setPropertyName("学校");
+		documentExtraProperty.setDocumentType(dTypeThesis);
+		session.save(documentExtraProperty);
+
+		documentExtraProperty.setId(11);
+		documentExtraProperty.setPropertyName("DOI");
+		documentExtraProperty.setDocumentType(dTypeJournal);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(12);
+		documentExtraProperty.setPropertyName("DOI");
+		documentExtraProperty.setDocumentType(dTypeConference);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(13);
+		documentExtraProperty.setPropertyName("ISBN");
+		documentExtraProperty.setDocumentType(dTypeBook);
+		session.save(documentExtraProperty);
+		
+		documentExtraProperty.setId(14);
+		documentExtraProperty.setPropertyName("ISBN");
+		documentExtraProperty.setDocumentType(dTypeSection);
+		session.save(documentExtraProperty);
+		
 		DocumentWithExtraProperty documentWithExtraProperty = new DocumentWithExtraProperty();
+		documentExtraProperty.setId(4);
 		documentWithExtraProperty.setDocument(document);
 		documentWithExtraProperty
 				.setDocumentExtraProperty(documentExtraProperty);

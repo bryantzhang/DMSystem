@@ -23,16 +23,16 @@
         function select(s){
             if(s=="图书"){
                 addition=newAddition();
-                divEditor=editDiv("editor","编辑");
-                divISBN=editDiv("isbn","ISBN");
+                divEditor=editDiv("editor-8","编辑");
+                divISBN=editDiv("isbn-13","ISBN");
                 addition.appendChild(divEditor);
                 addition.appendChild(divISBN);
             }
             if(s=="图书章节"){
                 addition=newAddition();
                 divBookName=editDiv("bookname","图书名");
-                divEditor=editDiv("editor","编辑");
-                divISBN=editDiv("isbn","ISBN");
+                divEditor=editDiv("editor-18","编辑");
+                divISBN=editDiv("isbn-14","ISBN");
 
                 addition.appendChild(divBookName);
                 addition.appendChild(divEditor);
@@ -41,10 +41,10 @@
             }
             if(s=="期刊"){
                 addition=newAddition();
-                divPublication=editDiv("publication","出处");
+                divPublication=editDiv("publication-4","出处");
                 divVolume=editDiv("volume","卷");
                 divIssue=editDiv("issue","期");
-                divDOI=editDiv("doi","DOI");
+                divDOI=editDiv("doi-11","DOI");
                 addition.appendChild(divPublication);
                 addition.appendChild(divVolume);
                 addition.appendChild(divIssue);
@@ -52,9 +52,9 @@
             }
             if(s=="会议"){
                 addition=newAddition();
-                divPublication=editDiv("publication","出处");
+                divPublication=editDiv("publication-15","出处");
                 divCity=editDiv("city","城市");
-                divDOI=editDiv("doi","DOI");
+                divDOI=editDiv("doi-12","DOI");
                 addition.appendChild(divPublication);
                 addition.appendChild(divCity);
                 addition.appendChild(divDOI);
@@ -77,7 +77,7 @@
                 div1=createDiv1();
                 div=createDiv();
                 label.setAttribute("for",english);
-                label.innerText=chinese+" *";
+                label.innerText = chinese + " *";
                 input.setAttribute("id",english);
                 input.setAttribute("placeholder",chinese);
                 div1.appendChild(input);
