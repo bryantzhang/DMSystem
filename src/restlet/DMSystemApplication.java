@@ -51,17 +51,19 @@ public class DMSystemApplication extends Application {
 
 		Router userRouter = new Router(getContext());
 		userRouter.attach("/index", DocumentsResource.class);
+
 		userRouter.attach("/addDoc", DocumentImportResource.class);
+
 		userRouter.attach("/getDoc/{documentId}", DocumentResource.class);
+        userRouter.attach("/deleteDoc/{documentId}", DocumentResource.class);
+
 		userRouter.attach("/modifyDoc/{documentId}", DocumentEditResource.class);
-		userRouter.attach("/deleteDoc/{documentId}", DocumentResource.class);
+
 		userRouter.attach("/addAttachment/{documentId}",
 				AttachmentResource.class);
 		userRouter.attach("/deleteAttachment/{attachmentId}",
 				AttachmentResource.class);
-        userRouter.attach("/getInfo/{userId}", AccountInfoResource.class);
         userRouter.attach("/updateInfo/{userId}", AccountInfoResource.class);
-
 
 		RoleAuthorizer normalAuthorizer = new RoleAuthorizer();
 		normalAuthorizer.getAuthorizedRoles().add(

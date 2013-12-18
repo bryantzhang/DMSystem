@@ -28,6 +28,9 @@ public class DocumentUtil {
 		// Link user with this document
 		document.setUser(user);
 
+        // Set document type
+        this._updateDocumentType(document, values);
+
         // Set time
         document.setCreateTime(new Date());
 
@@ -41,13 +44,7 @@ public class DocumentUtil {
 			throws Exception {
 		Document document = this.findById(docId);
 
-		if (document != null) {
-			this._updateValues(document, values);
-		}
-
-		HibernateUtil.update(document);
-
-		return document;
+		return this._update(document, values);
 	}
 
 	public void add(Document transientInstance) throws Exception {
@@ -78,14 +75,15 @@ public class DocumentUtil {
 		return HibernateUtil.getAll(Document.class);
 	}
 
-	private void _updateValues(Document document, Map<String, String> values) throws Exception {
-		this._updateBasisValues(document, values);
-		
-		if (values.containsKey(Constants.kDocumentTypeField)) {
-			Integer docTypeId = Integer.parseInt((String)values.get(Constants.kDocumentTypeField));
-			this._updateDocumentType(document, docTypeId);
-		}
-	}
+    private Document _update(Document document, Map<String, String> values) throws Exception {
+        if (document != null) {
+            this._updateBasisValues(document, values);
+
+            HibernateUtil.update(document);
+        }
+
+        return document;
+    }
 
 	private void _updateBasisValues(Document document,
 			Map<String, String> values) throws Exception {
@@ -111,8 +109,12 @@ public class DocumentUtil {
                 String publisher = (String) values.get(key);
                 document.setPublisher(publisher);
             } else if (key.equals(Constants.kPagesField)) {
-                Integer pages = Integer.parseInt((String) values
-                        .get(key));
+                String pagesStr = (String) values
+                        .get(key);
+                Integer pages = 0;
+                if (!pagesStr.isEmpty()) {
+                    pages =  Integer.parseInt(pagesStr);
+                }
                 document.setPages(pages);
             } else if (key.equals(Constants.kYearField)) {
                 String year = (String) values.get(key);
@@ -142,9 +144,11 @@ public class DocumentUtil {
         }
 	}
 	
-	private void _updateDocumentType(Document document, Integer docTypeId) throws Exception {
-		DocumentTypeUtil  documentTypeUtil = new DocumentTypeUtil();
-		DocumentType docType = documentTypeUtil.findById(docTypeId);
-		document.setDocumentType(docType);
+	private void _updateDocumentType(Document document, Map<String, String> values) throws Exception {
+        if (values.containsKey(Constants.kDocumentTypeField)) {
+            Integer docTypeId = Integer.parseInt((String) values.get(Constants.kDocumentTypeField));
+            DocumentType docType = DocumentTypeUtil.findById(docTypeId);
+            document.setDocumentType(docType);
+        }
 	}
 }

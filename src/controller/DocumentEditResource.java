@@ -65,14 +65,17 @@ public class DocumentEditResource extends ServerResource implements DocumentEdit
     }
 
     @Override
-    public Representation update(Form form) {
+    public void update(Form form) {
         try {
             Map<String, String> values = form.getValuesMap();
             this.documentUtil.update(this.documentId, values);
+            String redirectUrl = "/user/normal/index";
+            getResponse().redirectSeeOther(redirectUrl);
         } catch (Exception e) {
-            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
             e.printStackTrace();
+            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+            Representation modifyVtl = this.present();
+            getResponse().setEntity(modifyVtl);
         }
-        return new StringRepresentation("Modify document successfully");
     }
 }
