@@ -34,7 +34,8 @@ public class AccountResource extends ServerResource implements
                             + "/adminuser.vtl").get();
             result = new TemplateRepresentation(mailVtl, dataModel,
                     MediaType.TEXT_HTML);
-        } catch (Exception exception) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
             result = new StringRepresentation("Something error");
         }
         return result;

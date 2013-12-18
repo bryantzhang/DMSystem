@@ -60,7 +60,7 @@ public class DocumentResource extends ServerResource implements
                     MediaType.TEXT_HTML);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new StringRepresentation("Something error");
+            return new StringRepresentation("Something error when retrieve document");
         }
 	}
 
