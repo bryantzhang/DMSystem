@@ -246,7 +246,6 @@ public class Test {
 		session.save(documentExtraProperty);
 		
 		DocumentWithExtraProperty documentWithExtraProperty = new DocumentWithExtraProperty();
-		documentExtraProperty.setId(4);
 		documentWithExtraProperty.setDocument(document);
 		documentWithExtraProperty
 				.setDocumentExtraProperty(documentExtraProperty);
