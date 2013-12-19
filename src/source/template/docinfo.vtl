@@ -152,7 +152,7 @@
                 <div class="panel-heading" style="background:#0174DF;">
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseComment">
-                      评论&nbsp;&nbsp;<!-- <span class="badge">${document.evaluations.size}</span> -->
+                      评论&nbsp;&nbsp;<span class="badge">2</span><!-- <span class="badge">${document.evaluations.size}</span> -->
                     </a>
                   </h4>
                 </div>
@@ -160,7 +160,19 @@
                 <div id="collapseComment" class="panel-collapse collapse out">
                   <div class="panel-body">
 
-                  <#list document.evaluations as evaluation>
+                    <div class="well">
+                      <p>2013-12-18-14:23</p>
+                      <strong>MF1332089&nbsp;</strong>说：
+                      <p>文章不错，值得一读~</P>
+                    </div>
+                    
+                    <div class="well">
+                      <p>2013-12-18-14:23</p>
+                      <strong>MF1332082&nbsp;</strong>说：
+                      <p>楼上+1</P>
+                    </div>
+
+                  <!-- <#list document.evaluations as evaluation>
                     
                     <#if evaluation.published>
 
@@ -171,7 +183,7 @@
                     </div>
                     </#if>
 
-                  </#list>
+                  </#list> -->
                     
                   </div>
                 </div>
