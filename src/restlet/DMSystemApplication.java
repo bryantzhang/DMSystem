@@ -10,6 +10,7 @@ import org.restlet.security.Role;
 import org.restlet.security.RoleAuthorizer;
 
 import dao.User;
+import util.FileUtility;
 
 public class DMSystemApplication extends Application {
 
@@ -84,8 +85,7 @@ public class DMSystemApplication extends Application {
 
 		Router defaultRouter = new Router(getContext());
 
-		String rootUri = "file:///" + System.getProperty("user.home")
-				+ "/Developer/DMSystemResource";
+		String rootUri = "file:///" + FileUtility.getResourceDirectory();
 		Directory directory = new Directory(getContext(), rootUri);
 		directory.setListingAllowed(true);
 		defaultRouter.attach("/source", directory);

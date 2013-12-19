@@ -22,6 +22,7 @@ import org.restlet.resource.ServerResource;
 
 import common.AttachmentResourceInterface;
 import dao.Attachment;
+import util.FileUtility;
 
 public class AttachmentResource extends ServerResource implements
 		AttachmentResourceInterface {
@@ -86,11 +87,18 @@ public class AttachmentResource extends ServerResource implements
 
 					} else {
 						String fileName = fi.getName();
-						String tempDir = System.getProperty("java.io.tmpdir");
-						String filePath = tempDir + File.separator + fileName;
+                        if (fileName.isEmpty()) {
+                            continue;
+                        }
+
+						String directory = FileUtility.getFileDirectory();
+						String filePath = directory + File.separator + fileName;
 						File file = new File(filePath);
+                        if (!file.getParentFile().exists()) {
+                            file.mkdirs();
+                        }
 						fi.getInputStream();
-						// fi.write(file);
+						fi.write(file);
 
 						attachments.add(file);
 					}
@@ -100,6 +108,7 @@ public class AttachmentResource extends ServerResource implements
 				getResponse().setStatus(Status.SUCCESS_CREATED);
 				return new StringRepresentation("Success add attachments");
 			} catch (Exception e) {
+                e.printStackTrace();
 				throw e;
 			}
 		} catch (Exception e) {

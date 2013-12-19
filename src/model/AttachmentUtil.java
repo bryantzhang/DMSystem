@@ -10,6 +10,7 @@ import org.hibernate.Session;
 
 import dao.Attachment;
 import dao.Document;
+import util.FileUtility;
 
 /**
  * Utility object for domain model class Attachment.
@@ -47,7 +48,7 @@ public class AttachmentUtil {
 		for (File file : files) {
 			Attachment attachment = new Attachment();
 			attachment.setName(file.getName());
-			attachment.setUrl(file.getPath());
+			attachment.setUrl(FileUtility.getFileUrl(file.getName()));
 			attachment.setDocument(document);
 			
 			attachments.add(attachment);
