@@ -47,6 +47,11 @@ public class Constants {
     public static final String kContributionField = "contribution";
     public static final String kImprovementField = "improvement";
     
+    //Using for add user form
+    public static final String kUsernameField="username";
+    public static final String kNameField="name";
+    public static final String kAuthorityField="authority";
+    
     //Using for uploading attachment form
     public static final String kDocumentField = "document";
     public static final String kPptField = "ppt";

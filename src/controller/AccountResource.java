@@ -19,6 +19,7 @@ import java.util.Map;
 
 public class AccountResource extends ServerResource implements
 		AccountResourceInterface {
+	private UserUtil userutil=new UserUtil();
 
 	@Override
 	public Representation retrieveAccounts() {
@@ -43,11 +44,18 @@ public class AccountResource extends ServerResource implements
 
 	@Override
 	public Representation add(Form form) {
+		Representation result = null;
 		if (isInRole("Admin")) {
-			
+			Map<String, String> values = form.getValuesMap();
+			try {
+				this.userutil.add(values);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		// TODO Auto-generated method stub
-		return null;
+		result=this.retrieveAccounts();
+		return result;
 	}
 
 	@Override

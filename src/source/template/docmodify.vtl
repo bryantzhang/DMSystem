@@ -132,7 +132,9 @@
                         option=option.nextSibling;
                         }
                 }
-                choose(option.value);
+                if(option!=null){
+                	choose(option.value);
+                	}
         }
     </script>
     </style>

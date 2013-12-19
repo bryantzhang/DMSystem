@@ -6,11 +6,16 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import dao.Document;
 import dao.User;
 import org.restlet.Restlet;
 import org.restlet.resource.Resource;
 
+import restlet.Constants;
+
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Utility object for domain model class User.
@@ -20,7 +25,9 @@ import java.util.List;
  */
 public class UserUtil {
 
-	public static void add(User transientInstance) throws Exception {
+	public void add(Map<String, String> values) throws Exception {
+		User transientInstance=new User();
+		transientInstance=this._update(transientInstance,values);
 		HibernateUtil.persist(transientInstance);
 	}
 
@@ -61,5 +68,23 @@ public class UserUtil {
     @SuppressWarnings("unchecked")
     public static List<User> getAllUser() throws Exception {
         return HibernateUtil.getAll(User.class);
+    }
+    
+    private User _update(User user, Map<String, String> values) throws Exception {
+    	Set<String> keys = values.keySet();
+    	for(String key :keys){
+    		if (key.equals(Constants.kUsernameField)) {
+                String username = (String) values.get(key);
+                user.setUsername(username);
+                user.setPassword(username);
+            } else if(key.equals(Constants.kNameField)) {
+                String name = (String) values.get(key);
+                user.setName(name);
+            } else if(key.equals(Constants.kAuthorityField)) {
+                Integer authority =Integer.parseInt(values.get(key));
+                user.setAuthority(authority);
+            } 
+    	}          
+        return user;
     }
 }
