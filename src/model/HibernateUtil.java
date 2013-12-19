@@ -19,7 +19,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
  */
 public class HibernateUtil {
 	
-	private static final Log log = LogFactory.getLog(UserUtil.class);
+	private static final Log log = LogFactory.getLog("DMSystem");
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 
 	private static SessionFactory buildSessionFactory() {

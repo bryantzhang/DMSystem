@@ -40,7 +40,7 @@ public class DMSystemComponent extends Component {
 		getClients().add(new Client(Protocol.CLAP));
 		getClients().add(new Client(Protocol.FILE));
 
-		Server server = new Server(new Context(), Protocol.HTTPS, 8183);
+		Server server = new Server(new Context(), Protocol.HTTP, 8183);
 		Series<Parameter> parameters = server.getContext().getParameters();
 		parameters.add("keystorePath", "src/certification/serverKey.jks");
 		parameters.add("keystorePassword", "password");

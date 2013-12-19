@@ -15,7 +15,6 @@ import dao.Operation;
 import dao.RelationType;
 import dao.Tag;
 import dao.User;
-import model.DocumentWithExtraPropertyUtil;
 import model.UserUtil;
 
 import org.hibernate.Session;
@@ -48,38 +47,31 @@ public class Test {
 		session.save(docType);
 		
 		DocumentType dTypeBook = new DocumentType();
-		dTypeBook.setId(4);
-		dTypeBook.setName("Í¼Êé");
+		dTypeBook.setName("å›¾ä¹¦");
 		session.save(dTypeBook);
 		
 		DocumentType dTypeSection = new DocumentType();
-		dTypeSection.setId(5);
-		dTypeSection.setName("Í¼ÊéÕÂ½Ú");
+		dTypeSection.setName("å›¾ä¹¦ç« èŠ‚");
 		session.save(dTypeSection);
 		
 		DocumentType dTypeJournal = new DocumentType();
-		dTypeJournal.setId(6);
-		dTypeJournal.setName("ÆÚ¿¯");
+		dTypeJournal.setName("æœŸåˆŠ");
 		session.save(dTypeJournal);
 		
 		DocumentType dTypeConference = new DocumentType();
-		dTypeConference.setId(7);
-		dTypeConference.setName("»áÒé");
+		dTypeConference.setName("ä¼šè®®");
 		session.save(dTypeConference);
 		
 		DocumentType dTypeThesis = new DocumentType();
-		dTypeThesis.setId(8);
-		dTypeThesis.setName("Ñ§Î»ÂÛÎÄ");
+		dTypeThesis.setName("å­¦ä½è®ºæ–‡");
 		session.save(dTypeThesis);
 		
 		DocumentType dTypeReport = new DocumentType();
-		dTypeReport.setId(9);
-		dTypeReport.setName("¼¼Êõ±¨¸æ");
+		dTypeReport.setName("æŠ€æœ¯æŠ¥å‘Š");
 		session.save(dTypeReport);
 		
 		DocumentType dTypeOnline = new DocumentType();
-		dTypeOnline.setId(10);
-		dTypeOnline.setName("ÔÚÏß×ÊÔ´");
+		dTypeOnline.setName("åœ¨çº¿èµ„æº");
 		session.save(dTypeOnline);
 
 		for (int i = 0; i < 10; i++) {
@@ -189,72 +181,66 @@ public class Test {
 		session.save(documentRelation);
 
 		DocumentExtraProperty documentExtraProperty = new DocumentExtraProperty();
-		documentExtraProperty.setPropertyName("Home");
-		documentExtraProperty.setDocumentType(docType);
-		session.save(documentExtraProperty);
-		
-		
-		documentExtraProperty.setId(4);
-		documentExtraProperty.setPropertyName("³ö´¦");
+		documentExtraProperty.setPropertyName("å‡ºå¤„");
 		documentExtraProperty.setDocumentType(dTypeJournal);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(15);
-		documentExtraProperty.setPropertyName("³ö´¦");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("å‡ºå¤„");
 		documentExtraProperty.setDocumentType(dTypeConference);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(5);
-		documentExtraProperty.setPropertyName("³ÇÊĞ");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("åŸå¸‚");
 		documentExtraProperty.setDocumentType(dTypeConference);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(6);
-		documentExtraProperty.setPropertyName("¾í");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("å·");
 		documentExtraProperty.setDocumentType(dTypeJournal);
 		session.save(documentExtraProperty);
 
-		documentExtraProperty.setId(7);
-		documentExtraProperty.setPropertyName("ÆÚ");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("æœŸ");
 		documentExtraProperty.setDocumentType(dTypeJournal);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(8);
-		documentExtraProperty.setPropertyName("±à¼­");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("ç¼–è¾‘");
 		documentExtraProperty.setDocumentType(dTypeBook);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(18);
-		documentExtraProperty.setPropertyName("±à¼­");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("ç¼–è¾‘");
 		documentExtraProperty.setDocumentType(dTypeSection);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(9);
-		documentExtraProperty.setPropertyName("Í¼ÊéÃû");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("å›¾ä¹¦å");
 		documentExtraProperty.setDocumentType(dTypeSection);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(10);
-		documentExtraProperty.setPropertyName("Ñ§Ğ£");
+		documentExtraProperty = new DocumentExtraProperty();
+		documentExtraProperty.setPropertyName("å­¦æ ¡");
 		documentExtraProperty.setDocumentType(dTypeThesis);
 		session.save(documentExtraProperty);
 
-		documentExtraProperty.setId(11);
+		documentExtraProperty = new DocumentExtraProperty();
 		documentExtraProperty.setPropertyName("DOI");
 		documentExtraProperty.setDocumentType(dTypeJournal);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(12);
+		documentExtraProperty = new DocumentExtraProperty();
 		documentExtraProperty.setPropertyName("DOI");
 		documentExtraProperty.setDocumentType(dTypeConference);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(13);
+		documentExtraProperty = new DocumentExtraProperty();
 		documentExtraProperty.setPropertyName("ISBN");
 		documentExtraProperty.setDocumentType(dTypeBook);
 		session.save(documentExtraProperty);
 		
-		documentExtraProperty.setId(14);
+		documentExtraProperty = new DocumentExtraProperty();
 		documentExtraProperty.setPropertyName("ISBN");
 		documentExtraProperty.setDocumentType(dTypeSection);
 		session.save(documentExtraProperty);
@@ -286,8 +272,5 @@ public class Test {
 		UserUtil userHome = new UserUtil();
 		User dbUser = userHome.findById(user.getId());
 		System.out.println(dbUser.getName());
-
-        DocumentWithExtraProperty dwp = DocumentWithExtraPropertyUtil.find(document,documentExtraProperty);
-        System.out.print(dwp.getDocument().getTitle());
 	}
 }

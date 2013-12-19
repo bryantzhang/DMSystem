@@ -14,6 +14,6 @@ public interface DocumentImportResourceInterface {
     public Representation present();
 
     @Post
-    public Representation upload(Form form);
+    public void upload(Form form);
 
 }

@@ -45,17 +45,20 @@ public class DocumentImportResource extends ServerResource implements DocumentIm
     }
 
     @Override
-    public Representation upload(Form form) {
+    public void upload(Form form) {
         try {
             Map<String, String> values = form.getValuesMap();
             String username = getClientInfo().getUser().getIdentifier();
             UserUtil userUtil = new UserUtil();
             User user = userUtil.findByUsername(username);
             this.documentUtil.create(user, values);
+            String redirectUrl = "/user/normal/index";
+            getResponse().redirectSeeOther(redirectUrl);
         } catch (Exception e) {
-            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
             e.printStackTrace();
+            getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
+            Representation modifyVtl = this.present();
+            getResponse().setEntity(modifyVtl);
         }
-        return new StringRepresentation("Add document successfully");
     }
 }

@@ -14,6 +14,6 @@ public interface DocumentEditResourceInterface {
     public Representation present();
 
     @Post
-    public Representation update(Form form);
+    public void update(Form form);
 
 }
