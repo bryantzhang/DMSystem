@@ -26,9 +26,8 @@ import java.util.Set;
 public class UserUtil {
 
 	public void add(Map<String, String> values) throws Exception {
-		User transientInstance=new User();
-		transientInstance=this._update(transientInstance,values);
-		HibernateUtil.persist(transientInstance);
+		User transientInstance = new User();
+		transientInstance = this._update(transientInstance, values);
 	}
 
 	public static void remove(User persistentInstance) throws Exception {
@@ -49,8 +48,7 @@ public class UserUtil {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		session.beginTransaction();
-		Query query = session
-				.createQuery("from User user where username=?");
+		Query query = session.createQuery("from User user where username=?");
 		Object dbResult = query.setString(0, username).uniqueResult();
 
 		if (dbResult != null) {
@@ -60,31 +58,40 @@ public class UserUtil {
 		}
 	}
 
-    public static User getCurrentUser(Resource resource) throws Exception {
-        String identifier = resource.getClientInfo().getUser().getIdentifier();
-        return UserUtil.findByUsername(identifier);
-    }
+	public static User getCurrentUser(Resource resource) throws Exception {
+		String identifier = resource.getClientInfo().getUser().getIdentifier();
+		return UserUtil.findByUsername(identifier);
+	}
 
-    @SuppressWarnings("unchecked")
-    public static List<User> getAllUser() throws Exception {
-        return HibernateUtil.getAll(User.class);
-    }
-    
-    private User _update(User user, Map<String, String> values) throws Exception {
-    	Set<String> keys = values.keySet();
-    	for(String key :keys){
-    		if (key.equals(Constants.kUsernameField)) {
-                String username = (String) values.get(key);
-                user.setUsername(username);
-                user.setPassword(username);
-            } else if(key.equals(Constants.kNameField)) {
-                String name = (String) values.get(key);
-                user.setName(name);
-            } else if(key.equals(Constants.kAuthorityField)) {
-                Integer authority =Integer.parseInt(values.get(key));
-                user.setAuthority(authority);
-            } 
-    	}          
-        return user;
-    }
+	@SuppressWarnings("unchecked")
+	public static List<User> getAllUser() throws Exception {
+		return HibernateUtil.getAll(User.class);
+	}
+
+	private User _update(User user, Map<String, String> values)
+			throws Exception {
+		Set<String> keys = values.keySet();
+		for (String key : keys) {
+			if(key.equals(Constants.kId)){
+				Integer id = Integer.parseInt(values.get(Constants.kId));
+				user.setId(id);
+			}else if (key.equals(Constants.kNameField)) {
+				String name = (String) values.get(key);
+				user.setName(name);
+			} else if (key.equals(Constants.kAuthorityField)) {
+				Integer authority = Integer.parseInt(values.get(key));
+				user.setAuthority(authority);
+			} else if (key.equals(Constants.kUsernameField)) {
+				String username = (String) values.get(key);
+				user.setUsername(username);
+				user.setPassword(user.getUsername());
+			}
+		}
+		if(user.getId()==0){
+			HibernateUtil.persist(user);
+		}else{
+			HibernateUtil.update(user);
+		}
+		return user;
+	}
 }

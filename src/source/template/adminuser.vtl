@@ -74,9 +74,9 @@
                     </thead>
                     <#list users as user> 
                     <tr align="center">
-                        <form>
+                        <form method="POST">
                             <td>
-                                <input type="text" name="id" value="${user.id}" disabled>
+                                <input type="text" name="id" value="${user.id}" readonly>
                             </td>
                             <td>
                                 <input type="text" name="username" value="${user.username}">
@@ -86,13 +86,13 @@
                             </td>
                             <td>
                                 <select name="authority">
-                                    <option <#if user.authority == 1>selected</#if>>研究生</option>
-                                    <option <#if user.authority == 2>selected</#if>>管理员</option>
-                                    <option <#if user.authority == 3>selected</#if>>导师</option>
+                                    <option value="1" <#if user.authority == 1>selected</#if>>研究生</option>
+                                    <option value="2" <#if user.authority == 2>selected</#if>>管理员</option>
+                                    <option value="3" <#if user.authority == 3>selected</#if>>导师</option>
                                 </select>
                             </td>
                             <td>
-                                <input type="button" name="modify" value="确认修改">
+                                <input type="submit" name="modify" value="确认修改">
                             </td>
                         </form>
                         <form>
