@@ -95,12 +95,9 @@
                                 <input type="submit" name="modify" value="确认修改">
                             </td>
                         </form>
-                        <form>
                             <td>
-                                <input type="hidden" name="id" value="${user.id}">
-                                <input type="button" name="delete" value="删除">
+                                <button type="submit" name="delete" value="删除"><a href="/user/admin/adminuser/${user.id}">删除</a>
                             </td>
-                        </form>
                     </tr>
                     </#list>
                 </table>

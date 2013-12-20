@@ -43,7 +43,7 @@ public class DMSystemApplication extends Application {
 	@Override
 	public Restlet createInboundRoot() {
 		Router adminRouter = new Router(getContext());
-		adminRouter.attach("/index", AccountResource.class);
+		adminRouter.attach("/adminuser", AccountResource.class);
 
 		RoleAuthorizer adminAuthorizer = new RoleAuthorizer();
 		adminAuthorizer.getAuthorizedRoles().add(

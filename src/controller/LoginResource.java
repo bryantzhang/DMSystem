@@ -18,7 +18,7 @@ public class LoginResource extends ServerResource implements
 	public void login() {
 		if (getRequest().getClientInfo().isAuthenticated()) {
 			if (isInRole(Constants.kAdminRole)) {
-				String redirectUrl = "/user/admin/index";
+				String redirectUrl = "/user/admin/adminuser";
 				getResponse().redirectSeeOther(redirectUrl);
 			} else if (isInRole(Constants.kNormalRole)) {
 				String redirectUrl = "/user/normal/index";
@@ -38,7 +38,7 @@ public class LoginResource extends ServerResource implements
     @Post
     public void redirect(Representation input) {
         if (isInRole(Constants.kAdminRole)) {
-			String redirectUrl = "/user/admin/index";
+			String redirectUrl = "/user/admin/adminuser";
 			getResponse().redirectSeeOther(redirectUrl);
 		} else if (isInRole(Constants.kNormalRole)) {
 			String redirectUrl = "/user/normal/index";

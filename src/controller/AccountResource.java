@@ -2,6 +2,7 @@ package controller;
 
 import dao.User;
 import model.UserUtil;
+
 import org.restlet.data.Form;
 import org.restlet.data.LocalReference;
 import org.restlet.data.MediaType;
@@ -49,17 +50,28 @@ public class AccountResource extends ServerResource implements
 			Map<String, String> values = form.getValuesMap();
 			try {
 				this.userutil.add(values);
+				result=this.retrieveAccounts();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				result=new StringRepresentation("add unsucccess!");
 			}
 		}
-		result=this.retrieveAccounts();
 		return result;
 	}
 
 	@Override
 	public Representation remove() {
-		return null;
+		int userid = Integer.parseInt((String) getRequest().getAttributes().get("id"));
+		Representation result=null;
+		if(isInRole("Admin")){
+			try {
+				this.userutil.remove(userid);
+				result=this.retrieveAccounts();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				result=new StringRepresentation("remove unsucccess!");
+			}
+		}
+		return result;
 	}
 }

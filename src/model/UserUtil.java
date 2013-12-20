@@ -30,8 +30,10 @@ public class UserUtil {
 		transientInstance = this._update(transientInstance, values);
 	}
 
-	public static void remove(User persistentInstance) throws Exception {
-		HibernateUtil.remove(persistentInstance);
+	public void remove(int id) throws Exception {
+		User tobedeleted=this.findById(id);
+		if(tobedeleted!=null)
+			HibernateUtil.remove(tobedeleted);
 	}
 
 	public static void update(User detachedInstance) throws Exception {
